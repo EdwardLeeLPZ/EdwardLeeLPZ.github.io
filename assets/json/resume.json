@@ -1,73 +1,119 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
-    "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
-    "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
-    },
-    "profiles": [
-      {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
-      }
-    ]
+    "name": "Peizheng Li",
+    "email": "peizheng.li@yahoo.com",
+    "phone": "+86 18221190572",
+    "url": "https://EdwardLeeLPZ.github.io",
+    "summary": "Ph.D. Candidate in Autonomous Driving at Mercedes-Benz AG and University of Tübingen"
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
+      "name": "Mercedes-Benz AG",
+      "position": "Doctoral Researcher",
+      "url": "https://www.mercedes-benz.com/en/",
+      "startDate": "2023-02-01",
+      "endDate": "",
+      "summary": "Topic: Open World Model for Automated Driving",
       "highlights": [
-        "Relativity"
+      ]
+    },
+    {
+      "name": "Mercedes-Benz AG",
+      "position": "Master Thesis Student",
+      "url": "https://www.mercedes-benz.com/en/",
+      "startDate": "2022-04-01",
+      "endDate": "2022-11-30",
+      "summary": "",
+      "highlights": [
+        "Occupancy-Based Multi-object Trajectory and Motion Prediction in Bird's Eye View."
+      ]
+    },
+    {
+      "name": "Mercedes-Benz AG",
+      "position": "R&D Intern",
+      "url": "https://www.mercedes-benz.com/en/",
+      "startDate": "2021-05-01",
+      "endDate": "2021-10-17",
+      "summary": "",
+      "highlights": [
+        "Experimental Study: Analyzing the Influence of Context on Image-Based Object Detection.",
+        "Research on Domain Adaptation Based on Context Suppression and Global Prototype."
+      ]
+    },
+    {
+      "name": "Volkswagen Group China",
+      "position": "Research Assistant",
+      "url": "https://volkswagengroupchina.com.cn/en/volkswagengroupchina",
+      "startDate": "2018-09-03",
+      "endDate": "2019-06-30",
+      "summary": "",
+      "highlights": [
+        "Scouting research with focus on topics, e.g. External Communication of Level 5 Autonomous Vehicle, Mobility for Elderly People in China and Minicar.",
+        "Research institutes scouting (in China) with focus on Human Factors, Industrial Psychology and Ergonomics.",
+        "Data analysis and report writing for various projects, e.g. Data Security Awareness."
       ]
     }
   ],
   "volunteer": [],
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
-      "score": "",
+      "institution": "University of Tuebingen, Tuebingen, Germany",
+      "url": "https://uni-tuebingen.de/en",
+      "studyType": "Doctor of Philosophy (Ph.D.): Computer Science",
+      "startDate": "2022-02-01",
+      "endDate": ""
+    },
+    {
+      "institution": "University of Stuttgart, Stuttgart, Germany",
+      "url": "https://www.uni-stuttgart.de/en",
+      "studyType": "Master's degree: Electromobility",
+      "startDate": "2020-04-01",
+      "endDate": "2022-12-01",
+      "score": "1.5/1.0 (3.77/4.0)",
       "courses": [
-        "Theory of Relativity"
+        "Deep learning",
+        "Detection and Pattern Recognition",
+        "Computer Vision",
+        "Statistical and Adaptive Signal Processing",
+        "Artificial Intelligence Basics",
+        "Automated and Connected Driving",
+        "Optical Sensor Engineering for Autonomous Systems"
+      ]
+    },
+    {
+      "institution": "Tongji University, Shanghai, China",
+      "url": "https://en.tongji.edu.cn/",
+      "studyType": "Bachelor's degree: Automotive Studies",
+      "startDate": "2014-09-01",
+      "endDate": "2019-07-01",
+      "score": "4.5/5.0",
+      "courses": [
+        "Automotive Electrics",
+        "Automatic Control Theory",
+        "Principle and Application of Sensors in Vehicles",
+        "Embedded System Technology",
+        "Signal and System",
+        "Automotive Construction",
+        "Automotive Theory",
+        "Automotive Design"
       ]
     }
   ],
-  "awards": [
-    {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
-    }
-  ],
+  "awards": [],
   "certificates": [],
   "publications": [],
   "skills": [],
   "languages": [
     {
-      "language": "German",
+      "language": "Chinese",
       "fluency": "Native speaker"
     },
     {
       "language": "English",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "German",
       "fluency": "Fluent"
     }
   ],
