@@ -25,3 +25,19 @@
 "Doll":
   - firstname: ["Simon"]
     url: https://simondoll.github.io
+
+"Zhang":
+  - firstname: ["Qingwen"]
+    url: https://kin-zhang.github.io/
+
+"Yang":
+  - firstname: ["Yi"]
+    url: https://www.kth.se/profile/yiya?l=en
+  
+"Andersson":
+  - firstname: ["Olov"]
+    url: https://www.kth.se/profile/olovand
+
+"Jensfelt":
+  - firstname: ["Patric"]
+    url: https://www.kth.se/profile/patric

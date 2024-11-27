@@ -78,7 +78,7 @@ mastodon_username: # your mastodon instance+username in the format instance.tld/
 linkedin_username: peizheng-li # your LinkedIn user name
 telegram_username: # your Telegram user name
 scholar_userid: SExOc74AAAAJ&hl # your Google Scholar ID
-semanticscholar_id: # your Semantic Scholar ID
+semanticscholar_id: 2220434051 # your Semantic Scholar ID
 whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 orcid_id: 0000-0003-2140-4357 # your ORCID ID
 medium_username: # your Medium username
@@ -86,14 +86,14 @@ quora_username: # your Quora username
 publons_id: # your ID on Publons
 lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 osf_id: # your OSF ID
-research_gate_profile: # your profile on ResearchGate
+research_gate_profile: Peizheng-Li-3 # your profile on ResearchGate
 scopus_id: # your profile on Scopus
 blogger_url: # your blogger URL
 work_url: # work page URL
 keybase_username: # your keybase user name
 wikidata_id: # your wikidata id
 wikipedia_id: # your wikipedia id (Case sensitive)
-dblp_url: # your DBLP profile url
+dblp_url: https://dblp.org/pid/276/7065.html # your DBLP profile url
 stackoverflow_id: # your stackoverflow id
 kaggle_id: # your kaggle id
 lastfm_id: # your lastfm id
@@ -103,7 +103,7 @@ unsplash_id: # your unsplash id
 instagram_id: edward_lee_lpz # your instagram id
 facebook_id: lipeizheng # your facebook id
 youtube_id: PeizhengLi # your youtube channel id (youtube.com/@<youtube_id>)
-discord_id: # your discord id (18-digit unique numerical identifier)
+discord_id: peizhengli_81832 # your discord id (18-digit unique numerical identifier)
 zotero_username: # your zotero username
 
 contact_note: >
