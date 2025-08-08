@@ -5,49 +5,49 @@
 # acm_id: # your dl.acm.org/profile/id
 # blogger_url: # your blogger URL
 # bluesky_url: # your bluesky URL
-# dblp_url: # your DBLP profile url
-# discord_id: # your discord id (18-digit unique numerical identifier)
-email: you@example.com # your email address
-# facebook_id: # your facebook id
+dblp_url: https://dblp.org/pid/276/7065.html # your DBLP profile url
+discord_id: peizhengli_81832 # your discord id (18-digit unique numerical identifier)
+email: peizheng.li@yahoo.com # your email address
+facebook_id: lipeizheng # your facebook id
 # flickr_id: # your flickr id
-# github_username: # your GitHub user name
+github_username: EdwardLeeLPZ # your GitHub user name
 # gitlab_username: # your GitLab user name
 # hal_id: # your HAL id (https://hal.science/)
 # ieee_id: # your ieeexplore.ieee.org/author/id
-inspirehep_id: 1010907 # Inspire HEP author ID
-# instagram_id: # your instagram id
+# inspirehep_id: 1010907 # Inspire HEP author ID
+instagram_id: edward_lee_lpz # your instagram id
 # kaggle_id: # your kaggle id
 # keybase_username: # your keybase user name
 # lastfm_id: # your lastfm id
 # lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 # leetcode_id: # your LeetCode id
-# linkedin_username: # your LinkedIn user name
+linkedin_username: peizheng-li # your LinkedIn user name
 # mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 # medium_username: # your Medium username
-# orcid_id: # your ORCID ID
+orcid_id: 0000-0003-2140-4357 # your ORCID ID
 # osf_id: # your OSF ID
 # pinterest_id: # your pinterest id
 # publons_id: # your ID on Publons
 # quora_username: # your Quora username
-# research_gate_profile: # your profile on ResearchGate
-rss_icon: true # comment this line to hide the RSS icon
+research_gate_profile: Peizheng-Li-3 # your profile on ResearchGate
+# rss_icon: true # comment this line to hide the RSS icon
 scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID
 # scopus_id: # your profile on Scopus
-# semanticscholar_id: # your Semantic Scholar ID
+semanticscholar_id: 2220434051 # your Semantic Scholar ID
 # spotify_id: # your spotify id
 # stackoverflow_id: # your stackoverflow id
 # strava_userid: # your strava user id
 # telegram_username: # your Telegram user name
 # unsplash_id: # your unsplash id
-# wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)
+wechat_qr: wechat-qr.png # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)
 # whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 # wikidata_id: # your wikidata id
 # wikipedia_id: # your wikipedia id (Case sensitive)
-# work_url: # work page URL
-# x_username: # your X handle
-# youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
+work_url: https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/peizheng-li/ # work page URL
+x_username: DR_Edward_Lee # your X handle
+youtube_id: PeizhengLi # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
-custom_social: # can be any name here other than the ones already defined above
-  logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png # can be png, svg, jpg
-  title: Custom Social
-  url: https://www.alberteinstein.com/
+# custom_social: # can be any name here other than the ones already defined above
+#   logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png # can be png, svg, jpg
+#   title: Custom Social
+#   url: https://www.alberteinstein.com/

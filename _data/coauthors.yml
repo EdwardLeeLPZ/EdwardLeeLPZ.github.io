@@ -1,43 +1,72 @@
-"Li":
-  - firstname: ["Peizheng"]
-    url: https://EdwardLeeLPZ.github.io
-    
-"Ding":
-  - firstname: "Shuxiao"
-    url: https://scholar.google.com/citations?user=QPLytlUAAAAJ&hl=en
+"ding":
+  - firstname: ["Shuxiao"]
+    url: https://dsx0511.github.io/
 
-"Hanselmann":
-  - firstname: "Niklas"
+"hanselmann":
+  - firstname: ["Niklas"]
     url: https://lasnik.github.io/
 
-"Cordts":
+"cordts":
   - firstname: ["Marius"]
     url: https://scholar.google.com/citations?user=RM0ik8wAAAAJ&hl=en
 
-"Chen":
+"chen":
   - firstname: ["Xieyuanli"]
     url: https://xieyuanli-chen.com
 
-"Gall":
-  - firstname: ["Jürgen"]
-    url: https://pages.iai.uni-bonn.de/gall_juergen/
+"gall":
+  - firstname: ["Juergen", "J{\"u}rgen"]
+    url: http://gall.cv-uni-bonn.de
 
-"Doll":
-  - firstname: ["Simon"]
-    url: https://simondoll.github.io
-
-"Zhang":
+"zhang":
   - firstname: ["Qingwen"]
     url: https://kin-zhang.github.io/
 
-"Yang":
+  - firstname: ["Boya"]
+    url: https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/boya-zhang/
+
+"yang":
   - firstname: ["Yi"]
     url: https://www.kth.se/profile/yiya?l=en
-  
-"Andersson":
+
+  - firstname: ["Yutong"]
+    url: https://scholar.google.com/citations?user=kg9OvU0AAAAJ&hl=en
+
+  - firstname: ["Bin"]
+    url: https://www.iss.uni-stuttgart.de/institut/team/Yang-00004/
+
+"andersson":
   - firstname: ["Olov"]
     url: https://www.kth.se/profile/olovand
 
-"Jensfelt":
+"jensfelt":
   - firstname: ["Patric"]
     url: https://www.kth.se/profile/patric
+
+"wiederer":
+  - firstname: ["Julian"]
+    url: https://scholar.google.com/citations?user=YRAtWesAAAAJ&hl=en
+
+"lai":
+  - firstname: ["Yuzhi"]
+    url: https://scholar.google.com/citations?user=9Z6Gjo4AAAAJ&hl=en
+
+"triess":
+  - firstname: ["Larissa"]
+    url: https://larissa.triess.eu/
+
+"zell":
+  - firstname: ["Andreas"]
+    url: https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/
+
+"yuan":
+  - firstname: ["Shenghai"]
+    url: https://scholar.google.com/citations?user=XcV_sesAAAAJ&hl=en
+
+"kiefer":
+  - firstname: ["Benjamin"]
+    url: https://scholar.google.com/citations?user=IgH9QkEAAAAJ&hl=en
+
+"zhou":
+  - firstname: ["You"]
+    url: https://scholar.google.com/citations?user=DAuIVp8AAAAJ&hl=en
