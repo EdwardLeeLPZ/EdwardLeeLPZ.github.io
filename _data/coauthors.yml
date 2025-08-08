@@ -15,7 +15,7 @@
     url: https://xieyuanli-chen.com
 
 "gall":
-  - firstname: ["Juergen", "J{\"u}rgen"]
+  - firstname: ["Juergen", 'J{"u}rgen']
     url: http://gall.cv-uni-bonn.de
 
 "zhang":

@@ -11,7 +11,7 @@ profile:
   address: >
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true  # includes social icons at the bottom of the page
+social: true # includes social icons at the bottom of the page
 
 announcements:
   enabled: true # includes a list of news items
@@ -24,9 +24,9 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hey there! This is Peizheng Li, a PhD student with the Scene Understanding Group at [Mercedes-Benz R&D](https://www.mercedes-benz.com/en/), as well as the [Cognitive Systems Group](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/) at [University of Tübingen](https://uni-tuebingen.de/en), where I am advised by [Prof. Andreas Geiger](https://www.cvlibs.net/) and [Prof. Andreas Zell](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/).  
+Hey there! This is Peizheng Li, a PhD student with the Scene Understanding Group at [Mercedes-Benz R&D](https://www.mercedes-benz.com/en/), as well as the [Cognitive Systems Group](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/) at [University of Tübingen](https://uni-tuebingen.de/en), where I am advised by [Prof. Andreas Geiger](https://www.cvlibs.net/) and [Prof. Andreas Zell](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/).
 
-Previously I was a master’s student majoring in Electromobility at the [University of Stuttgart](https://www.uni-stuttgart.de/en/), where I completed my research thesis at the [Institute of Signal Processing and System Theory](https://www.iss.uni-stuttgart.de/en/), supervised by [Prof. Bin Yang](https://www.iss.uni-stuttgart.de/institut/team/Yang-00004/). Before that, I received my undergraduate degree in Automotive Studies at [Tongji University](https://en.tongji.edu.cn/).  
+Previously I was a master’s student majoring in Electromobility at the [University of Stuttgart](https://www.uni-stuttgart.de/en/), where I completed my research thesis at the [Institute of Signal Processing and System Theory](https://www.iss.uni-stuttgart.de/en/), supervised by [Prof. Bin Yang](https://www.iss.uni-stuttgart.de/institut/team/Yang-00004/). Before that, I received my undergraduate degree in Automotive Studies at [Tongji University](https://en.tongji.edu.cn/).
 
 Currently my research interests lie in the intersection of machine learning, robotics and computer vision. In particular, I am interested in extending autonomous driving capability, such as perception, prediction, etc., to real-life open world scenarios.
 

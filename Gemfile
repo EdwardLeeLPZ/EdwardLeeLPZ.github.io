@@ -36,5 +36,3 @@ group :other_plugins do
     # gem 'unicode_utils' -- should be already installed by jekyll
     # gem 'webrick' -- should be already installed by jekyll
 end
-
-gem 'wdm', '>= 0.1.0' if Gem.win_platform?
