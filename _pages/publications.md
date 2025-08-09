@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: Publications
-description: Check the latest through Google Scholar; * means co-first authors
+description: Check the latest through Google Scholar.
 nav: true
 nav_order: 1
 ---
