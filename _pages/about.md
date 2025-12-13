@@ -28,7 +28,7 @@ Hey there! This is Peizheng Li, a PhD student with the Scene Understanding Group
 
 Previously I was a master’s student majoring in Electromobility at the [University of Stuttgart](https://www.uni-stuttgart.de/en/), where I completed my research thesis at the [Institute of Signal Processing and System Theory](https://www.iss.uni-stuttgart.de/en/), supervised by [Prof. Bin Yang](https://www.iss.uni-stuttgart.de/institut/team/Yang-00004/). Before that, I received my undergraduate degree in Automotive Studies at [Tongji University](https://en.tongji.edu.cn/).
 
-Currently my research interests lie in the intersection of machine learning, robotics and computer vision. In particular, I am interested in extending autonomous driving capability, such as perception, prediction, etc., to real-life open world scenarios.
+Currently my research interests lie in the intersection of machine learning, computer vision and robotics. In particular, I am dedicated to developing autonomous systems for real-life open world scenarios through VLM/VLA and world models.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 

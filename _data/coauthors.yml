@@ -19,6 +19,9 @@
     url: http://gall.cv-uni-bonn.de
 
 "zhang":
+  - firstname: ["Zhenghao"]
+    url: https://zhenghao2519.github.io/
+  
   - firstname: ["Qingwen"]
     url: https://kin-zhang.github.io/
 
@@ -70,3 +73,19 @@
 "zhou":
   - firstname: ["You"]
     url: https://scholar.google.com/citations?user=DAuIVp8AAAAJ&hl=en
+
+"holtz":
+  - firstname: ["David"]
+    url: https://scholar.google.com/citations?user=gf09DbwAAAAJ&hl=en&oi=sra
+
+"yu":
+  - firstname: ["Hang"]
+    url: https://scholar.google.com/citations?user=yEY9n1EAAAAJ&hl=en
+
+"song":
+  - firstname: ["Rui"]
+    url: https://rruisong.github.io/
+
+"geiger":
+  - firstname: ["Andreas"]
+    url: https://www.cvlibs.net/
