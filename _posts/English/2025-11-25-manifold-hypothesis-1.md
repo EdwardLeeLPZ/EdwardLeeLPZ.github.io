@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Reflections on the Manifold Hypothesis - 1
+title: In the Perspective of Manifold Hypotheses - 1
 date: 2025-11-25 00:00:00
 tags: Tech-Blog
 categories: English
