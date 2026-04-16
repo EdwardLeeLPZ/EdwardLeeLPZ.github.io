@@ -2,7 +2,7 @@
 layout: about
 title: Home
 permalink: /
-subtitle: Ph.D. student | Machine Learning, Vision, Robotics and Autonomous Driving
+subtitle: PhD Researcher | Spatial Intelligence · Embodied AI · Foundation Models for Physical World
 
 profile:
   align: right
@@ -24,14 +24,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hey there! This is Peizheng Li, a PhD student with the Scene Understanding Group at [Mercedes-Benz R&D](https://www.mercedes-benz.com/en/), as well as the [Cognitive Systems Group](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/) at [University of Tübingen](https://uni-tuebingen.de/en), where I am advised by [Prof. Andreas Geiger](https://www.cvlibs.net/) and [Prof. Andreas Zell](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/).
+My research focuses on building autonomous systems that can perceive, model, and reliably act in the 3D physical world, spanning 3D/4D dynamics scene understanding, open world modeling, spatial intelligence and embodied systems.
 
-Previously I was a master’s student majoring in Electromobility at the [University of Stuttgart](https://www.uni-stuttgart.de/en/), where I completed my research thesis at the [Institute of Signal Processing and System Theory](https://www.iss.uni-stuttgart.de/en/), supervised by [Prof. Bin Yang](https://www.iss.uni-stuttgart.de/institut/team/Yang-00004/). Before that, I received my undergraduate degree in Automotive Studies at [Tongji University](https://en.tongji.edu.cn/).
-
-Currently my research interests lie in the intersection of machine learning, computer vision and robotics. In particular, I am dedicated to developing autonomous systems for real-life open world scenarios through VLM/VLA and world models.
-
-<!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
-
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
+I am a PhD researcher at the [University of Tübingen](https://uni-tuebingen.de/en) and [Mercedes-Benz AG R&D](https://www.mercedes-benz.com/en/), advised by [Prof. Andreas Geiger](https://www.cvlibs.net/) and [Prof. Andreas Zell](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/). My work bridges academic research and industrial-scale engineering, spanning real-world vehicle constraints and large-scale data pipelines, with publications at CVPR, ICCV, ECCV, and IJCAI as first or core author across four consecutive years.

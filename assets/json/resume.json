@@ -2,98 +2,73 @@
   "basics": {
     "name": "Peizheng Li",
     "email": "peizheng.li@yahoo.com",
-    "phone": "+86 18221190572",
     "url": "https://EdwardLeeLPZ.github.io",
-    "summary": "Ph.D. Candidate in Autonomous Driving at Mercedes-Benz AG and University of Tübingen"
+    "summary": "PhD researcher building systems that understand and act in the 3D physical world. First-author publications at CVPR, ICCV, and IJCAI; experienced in scalable training, evaluation, and data pipelines across cloud and local GPU systems."
   },
   "work": [
     {
-      "name": "Mercedes-Benz AG",
-      "position": "Doctoral Researcher",
+      "name": "Mercedes-Benz Group AG",
+      "position": "Industrial Doctoral Researcher",
       "url": "https://www.mercedes-benz.com/en/",
       "startDate": "2023-02-01",
       "endDate": "",
-      "summary": "Topic: Open World Model for Automated Driving",
-      "highlights": []
-    },
-    {
-      "name": "Mercedes-Benz AG",
-      "position": "Master Thesis Student",
-      "url": "https://www.mercedes-benz.com/en/",
-      "startDate": "2022-04-01",
-      "endDate": "2022-11-30",
-      "summary": "",
-      "highlights": ["Occupancy-Based Multi-object Trajectory and Motion Prediction in Bird's Eye View."]
-    },
-    {
-      "name": "Mercedes-Benz AG",
-      "position": "R&D Intern",
-      "url": "https://www.mercedes-benz.com/en/",
-      "startDate": "2021-05-01",
-      "endDate": "2021-10-17",
-      "summary": "",
+      "summary": "Scene Understanding Group, R&D",
       "highlights": [
-        "Experimental Study: Analyzing the Influence of Context on Image-Based Object Detection.",
-        "Research on Domain Adaptation Based on Context Suppression and Global Prototype."
+        "Research on multimodal and embodied AI for autonomous systems, spanning VLM/VLA, open-world 3D occupancy prediction, spatial reasoning, self-supervised scene flow, and robotics / HRI collaborations.",
+        "First-author publications: SpaceDrive (CVPR 2026), AGO (ICCV 2025), PowerBEV (IJCAI 2023).",
+        "Built large-scale data and evaluation pipelines for data acquisition, cleaning, temporal consistency, and automated dense 3D pseudo-label generation.",
+        "Scaled training and evaluation across GPU clusters and cloud using PyTorch, CUDA, DDP, Docker, Kubernetes, Flyte, Azure, and GCP."
       ]
     },
     {
-      "name": "Volkswagen Group China",
-      "position": "Research Assistant",
-      "url": "https://volkswagengroupchina.com.cn/en/volkswagengroupchina",
-      "startDate": "2018-09-03",
-      "endDate": "2019-06-30",
-      "summary": "",
+      "name": "Mercedes-Benz Group AG",
+      "position": "Master Student",
+      "url": "https://www.mercedes-benz.com/en/",
+      "startDate": "2022-04-01",
+      "endDate": "2022-12-01",
+      "summary": "Scene Understanding Group, R&D",
       "highlights": [
-        "Scouting research with focus on topics, e.g. External Communication of Level 5 Autonomous Vehicle, Mobility for Elderly People in China and Minicar.",
-        "Research institutes scouting (in China) with focus on Human Factors, Industrial Psychology and Ergonomics.",
-        "Data analysis and report writing for various projects, e.g. Data Security Awareness."
+        "Built a camera-based end-to-end BEV perception and future prediction model; achieved 39.3% dynamic IoU on nuScenes.",
+        "Designed a multi-stage temporal GCN for Waymo Occupancy and Flow Prediction Challenge; ranked 4th on the leaderboard."
+      ]
+    },
+    {
+      "name": "Mercedes-Benz Group AG",
+      "position": "Research Intern",
+      "url": "https://www.mercedes-benz.com/en/",
+      "startDate": "2021-05-01",
+      "endDate": "2021-10-01",
+      "summary": "Scene Understanding Group, R&D",
+      "highlights": [
+        "Studied contextual bias in 2D object detection and domain adaptation; disruptive context reduced mAP by 5.37%.",
+        "Developed context-separation components and baseline pipelines to support internal adaptation research."
       ]
     }
   ],
   "volunteer": [],
   "education": [
     {
-      "institution": "University of Tuebingen, Tuebingen, Germany",
+      "institution": "University of Tübingen, Germany",
       "url": "https://uni-tuebingen.de/en",
-      "studyType": "Doctor of Philosophy (Ph.D.): Computer Science",
-      "startDate": "2022-02-01",
+      "studyType": "Ph.D. in Computer Science",
+      "startDate": "2023-02-01",
       "endDate": ""
     },
     {
-      "institution": "University of Stuttgart, Stuttgart, Germany",
+      "institution": "University of Stuttgart, Germany",
       "url": "https://www.uni-stuttgart.de/en",
-      "studyType": "Master's degree: Electromobility",
+      "studyType": "M.Sc. in Electromobility",
       "startDate": "2020-04-01",
       "endDate": "2022-12-01",
-      "score": "1.5/1.0 (3.77/4.0)",
-      "courses": [
-        "Deep learning",
-        "Detection and Pattern Recognition",
-        "Computer Vision",
-        "Statistical and Adaptive Signal Processing",
-        "Artificial Intelligence Basics",
-        "Automated and Connected Driving",
-        "Optical Sensor Engineering for Autonomous Systems"
-      ]
+      "score": "1.6 (German scale, 1.0 best)"
     },
     {
       "institution": "Tongji University, Shanghai, China",
       "url": "https://en.tongji.edu.cn/",
-      "studyType": "Bachelor's degree: Automotive Studies",
+      "studyType": "B.Eng. in Vehicle Engineering",
       "startDate": "2014-09-01",
       "endDate": "2019-07-01",
-      "score": "4.5/5.0",
-      "courses": [
-        "Automotive Electrics",
-        "Automatic Control Theory",
-        "Principle and Application of Sensors in Vehicles",
-        "Embedded System Technology",
-        "Signal and System",
-        "Automotive Construction",
-        "Automotive Theory",
-        "Automotive Design"
-      ]
+      "score": "4.5 / 5.0"
     }
   ],
   "awards": [],
@@ -107,11 +82,11 @@
     },
     {
       "language": "English",
-      "fluency": "Fluent"
+      "fluency": "Professional"
     },
     {
       "language": "German",
-      "fluency": "Fluent"
+      "fluency": "Professional"
     }
   ],
   "interests": [],

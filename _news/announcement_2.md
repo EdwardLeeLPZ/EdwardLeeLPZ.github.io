@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2023-8-7
+date: 2024-07-01
 inline: true
 related_posts: false
 ---
 
-I will be presenting [PowerBEV](https://wwpaperw.ijcai.org/proceedings/2023/120) at [ROAD++: The Second Workshop & Challenge on Event Detection for Situation Awareness in Autonomous Driving](https://sites.google.com/view/road-plus-plus/home) @ [ICCV 2023](https://iccv2023.thecvf.com/). Looking forward to meeting you.
+Our [SeFlow: A Self-Supervised Scene Flow Method in Autonomous Driving](https://link.springer.com/chapter/10.1007/978-3-031-73232-4_20) paper is accepted by [ECCV 2024](https://eccv.ecva.net/virtual/2024). 🎉 The 1st ranking on Argoverse 2 Self-supervised scene flow leaderboard!
