@@ -213,14 +213,19 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-.profile.float-right {
-  margin-left: 1rem;
+// Mobile: no float, full width, sits above bio text — prevents overflow & line overlap
+@media (max-width: 575.98px) {
+  .profile.float-right,
+  .profile.float-left {
+    float: none !important;
+    width: 100% !important;
+    max-width: 280px;
+    margin: 0 auto 1.25rem auto !important;
+    display: block;
+  }
 }
 
-.profile.float-left {
-  margin-right: 1rem;
-}
-
+// Desktop: restore float layout
 @media (min-width: 576px) {
   .profile {
     width: 30%;
@@ -230,6 +235,14 @@ ul.task-list input[type="checkbox"] {
         display: block;
       }
     }
+  }
+
+  .profile.float-right {
+    margin-left: 1rem;
+  }
+
+  .profile.float-left {
+    margin-right: 1rem;
   }
 }
 
@@ -1574,12 +1587,18 @@ figure.cover {
   margin-top: 0.5rem;
 }
 
-// Bio text: subtle left accent
+// Bio text: subtle left accent — desktop only (mobile: no float so no overlap issue,
+// but the border would appear next to the photo; suppress on small screens)
 .about-bio {
-  border-left: 3px solid transparent;
-  border-image: linear-gradient(to bottom, var(--global-gradient-start), var(--global-gradient-end)) 1;
-  padding-left: 1rem;
   margin-top: 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .about-bio {
+    border-left: 3px solid transparent;
+    border-image: linear-gradient(to bottom, var(--global-gradient-start), var(--global-gradient-end)) 1;
+    padding-left: 1rem;
+  }
 }
 
 // Profile photo: flat, no shadow, no hover effect
