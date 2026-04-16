@@ -6,7 +6,7 @@ body {
   padding-bottom: 70px;
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
-  // Subtle warm noise-like texture so the background isn't a flat color
+  overflow-x: hidden; // prevent horizontal scroll from orbs or floated elements
   background-image:
     radial-gradient(ellipse 80% 40% at 15% 10%, var(--global-glow-color) 0%, transparent 60%),
     radial-gradient(ellipse 60% 30% at 85% 85%, var(--global-glow-color) 0%, transparent 60%);
@@ -81,15 +81,23 @@ body.sticky-bottom-footer {
   }
 }
 
-// Profile — flat, constrained height, restored side-by-side float
+// Profile — flat, no shadow
+// On mobile (< 576px) let the image be full width with no height constraint
+// so it doesn't overflow or cause horizontal scroll.
+// On desktop the float-right kicks in via _base.scss and the image is 30% wide.
 .profile {
   img {
     width: 100%;
+    display: block;
+    box-shadow: none !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .profile img {
     max-height: 280px;
     object-fit: cover;
     object-position: center top;
-    display: block;
-    box-shadow: none !important;
   }
 }
 
