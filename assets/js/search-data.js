@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "CV",
-          description: "",
+          description: "Education, work experience, technical skills, and academic service.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -36,16 +36,16 @@ ninja.data = [{
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather.html";
             },},{id: "news-powerbev-our-paper-on-camera-based-end-to-end-instance-prediction-in-bird-s-eye-view-has-been-accepted-by-ijcai-2023",
-          title: 'PowerBEV, Our paper on camera-based end-to-end instance prediction in bird’s-eye view, has been...',
-          description: "",
-          section: "News",},{id: "news-i-will-be-presenting-powerbev-at-road-the-second-workshop-amp-amp-challenge-on-event-detection-for-situation-awareness-in-autonomous-driving-iccv-2023-looking-forward-to-meeting-you",
-          title: 'I will be presenting PowerBEV at ROAD++: The Second Workshop &amp;amp;amp; Challenge on...',
+          title: 'PowerBEV, our paper on camera-based end-to-end instance prediction in bird’s-eye view, has been...',
           description: "",
           section: "News",},{id: "news-our-seflow-a-self-supervised-scene-flow-method-in-autonomous-driving-paper-is-accepted-by-eccv-2024-the-1st-ranking-on-argoverse-2-self-supervised-scene-flow-leaderboard",
           title: 'Our SeFlow: A Self-Supervised Scene Flow Method in Autonomous Driving paper is accepted...',
           description: "",
           section: "News",},{id: "news-our-ago-adaptive-grounding-for-open-world-3d-occupancy-prediction-paper-is-accepted-by-iccv-2025",
           title: 'Our AGO: Adaptive Grounding for Open World 3D Occupancy Prediction paper is accepted...',
+          description: "",
+          section: "News",},{id: "news-our-spacedrive-infusing-spatial-awareness-into-vlm-based-autonomous-driving-paper-is-accepted-by-cvpr-2026-the-1st-ranking-on-nuscenes-benchmark-and-2nd-best-close-loop-performance-on-bench2drive-leaderboard",
+          title: 'Our SpaceDrive: Infusing Spatial Awareness into VLM-based Autonomous Driving paper is accepted by...',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
