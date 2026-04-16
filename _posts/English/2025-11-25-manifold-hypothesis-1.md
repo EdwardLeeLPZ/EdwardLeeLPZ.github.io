@@ -4,6 +4,7 @@ title: In the Perspective of Manifold Hypotheses - 1
 date: 2025-11-25 00:00:00
 tags: Tech-Blog
 categories: English
+giscus_comments: true
 ---
 
 ## **Introduction: Geometric Order Amidst High-Dimensional Noise**

@@ -6,6 +6,10 @@ body {
   padding-bottom: 70px;
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
+  // Subtle warm noise-like texture so the background isn't a flat color
+  background-image:
+    radial-gradient(ellipse 80% 40% at 15% 10%, var(--global-glow-color) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 30% at 85% 85%, var(--global-glow-color) 0%, transparent 60%);
 
   h1,
   h2,
@@ -31,20 +35,82 @@ body.sticky-bottom-footer {
   max-width: $max-content-width;
 }
 
-// Profile
-.profile {
-  img {
-    width: 100%;
+// Ambient gradient orbs — creates depth behind content
+.post {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(80px);
+  }
+
+  &::before {
+    top: -5%;
+    right: -15%;
+    width: 45vw;
+    height: 45vw;
+    max-width: 500px;
+    max-height: 500px;
+    background: radial-gradient(circle, var(--global-glow-color) 0%, transparent 70%);
+    animation: drift-slow 25s ease-in-out infinite alternate;
+  }
+
+  &::after {
+    bottom: 20%;
+    left: -15%;
+    width: 35vw;
+    height: 35vw;
+    max-width: 400px;
+    max-height: 400px;
+    background: radial-gradient(circle, var(--global-glow-color) 0%, transparent 70%);
+    animation: drift-slow 20s ease-in-out infinite alternate-reverse;
   }
 }
 
-// TODO: redefine content layout.
+@keyframes drift-slow {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(3vw, 2vh);
+  }
+}
+
+// Profile — flat, constrained height, restored side-by-side float
+.profile {
+  img {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    box-shadow: none !important;
+  }
+}
 
 /******************************************************************************
  * Publications
  ******************************************************************************/
 
-// TODO: redefine publications layout.
+// Publication rows — flat, no transform/shadow
+.publications {
+  ol.bibliography {
+    li {
+      padding: 0.75rem 0.25rem;
+      border-radius: 0;
+      transition: background-color 0.15s ease;
+
+      &:hover {
+        background-color: var(--global-accent-bg);
+      }
+    }
+  }
+}
 
 /*****************************************************************************
 * Projects

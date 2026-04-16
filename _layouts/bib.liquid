@@ -2,7 +2,7 @@
 ---
 <div class="row">
   {% if site.enable_publication_thumbnails %}
-    <div class="col col-sm-2 abbr">
+    <div class="col col-sm-4 abbr">
       {%- if entry.abbr -%}
         {%- if site.data.venues[entry.abbr] -%}
           {% assign venue_style = null %}
@@ -34,7 +34,7 @@
             include figure.liquid
             loading="eager"
             path=entry_path
-            sizes = "200px"
+            sizes = "350px"
             class="preview z-depth-1 rounded"
             zoomable=true
             avoid_scaling=true
@@ -49,6 +49,9 @@
   <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
+    {% if entry.description %}
+      <div class="pub-description">{{ entry.description }}</div>
+    {% endif %}
     <!-- Author -->
     <div class="author">
       {% assign author_array_size = entry.author_array | size %}

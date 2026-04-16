@@ -30,8 +30,8 @@ layout: default
       <div class="cv">
         {% for entry in site.data.cv %}
           <a class="anchor" id="{{ entry.title }}"></a>
-          <div class="card mt-3 p-3">
-            <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
+          <div class="cv-section">
+            <h3 class="cv-section-title">{{ entry.title }}</h3>
             <div>
               {% if entry.type == 'list' %}
                 {% include cv/list.liquid %}
@@ -50,6 +50,72 @@ layout: default
           </div>
         {% endfor %}
       </div>
+      {% if page.cv_pdf %}
+        <div class="cv-section">
+          <h3 class="cv-section-title">Resume</h3>
+          <div class="pdf-viewer-container" oncontextmenu="return false;">
+            <div id="pdf-pages"></div>
+            <div class="pdf-controls">
+              <button id="pdf-prev" class="btn btn-sm z-depth-0"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+              <span id="pdf-page-info"></span>
+              <button id="pdf-next" class="btn btn-sm z-depth-0">Next <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+        </div><!-- .cv-section -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+        <script>
+          (function() {
+            var url = '{{ page.cv_pdf | prepend: "assets/pdf/" | relative_url }}';
+            var pdfDoc = null;
+            var pageNum = 1;
+            var rendering = false;
+            var container = document.getElementById('pdf-pages');
+            var pageInfo = document.getElementById('pdf-page-info');
+
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+            function renderPage(num) {
+              rendering = true;
+              pdfDoc.getPage(num).then(function(page) {
+                var containerWidth = container.clientWidth;
+                var unscaledViewport = page.getViewport({ scale: 1 });
+                var scale = containerWidth / unscaledViewport.width;
+                var viewport = page.getViewport({ scale: scale });
+
+                container.innerHTML = '';
+                var canvas = document.createElement('canvas');
+                canvas.style.width = '100%';
+                canvas.style.display = 'block';
+                var ctx = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                container.appendChild(canvas);
+
+                page.render({ canvasContext: ctx, viewport: viewport }).promise.then(function() {
+                  rendering = false;
+                });
+              });
+              pageInfo.textContent = num + ' / ' + pdfDoc.numPages;
+            }
+
+            document.getElementById('pdf-prev').addEventListener('click', function() {
+              if (pageNum <= 1 || rendering) return;
+              pageNum--;
+              renderPage(pageNum);
+            });
+            document.getElementById('pdf-next').addEventListener('click', function() {
+              if (!pdfDoc || pageNum >= pdfDoc.numPages || rendering) return;
+              pageNum++;
+              renderPage(pageNum);
+            });
+
+            pdfjsLib.getDocument(url).promise.then(function(pdf) {
+              pdfDoc = pdf;
+              renderPage(1);
+            });
+          })();
+        </script>
+      {% endif %}
     </article>
   </div>
 {% else %}
@@ -87,8 +153,8 @@ layout: default
           {% endif %}
           {% if data[0] == 'meta' or data[1].size == 0 %} {% continue %} {% endif %}
           <a class="anchor" id="{{ data[0] }}"></a>
-          <div class="card mt-3 p-3">
-            <h3 class="card-title font-weight-medium">{{ data[0] | capitalize }}</h3>
+          <div class="cv-section">
+            <h3 class="cv-section-title">{{ data[0] | capitalize }}</h3>
             <div>
               {% case data[0] %}
                 {% when 'basics' %}
@@ -119,7 +185,7 @@ layout: default
 
               {% endcase %}
             </div>
-          </div>
+          </div><!-- .cv-section -->
         {% endfor %}
       </div>
     </article>

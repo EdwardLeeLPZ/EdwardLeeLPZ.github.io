@@ -4,6 +4,7 @@ title: In the Perspective of Manifold Hypotheses - 2
 date: 2025-12-15 00:00:00
 tags: Tech-Blog
 categories: English
+giscus_comments: true
 ---
 
 ## **Introduction: Architectural Evolution and the Path Traveled**

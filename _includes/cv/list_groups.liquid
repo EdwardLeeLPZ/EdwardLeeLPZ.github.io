@@ -20,7 +20,7 @@
             <tr>
               <td></td>
               <td class="list-group-name">
-                <b>{{ item.name }}</b>
+                <b>{% if item.name %}{{ item.name }}{% else %}{{ item }}{% endif %}</b>
               </td>
               {% if item.level %}
                 <td class="list-group-level">{{ item.level }}</td>

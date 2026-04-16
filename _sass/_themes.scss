@@ -6,29 +6,37 @@
 
 :root {
   color-scheme: light;
-  --global-bg-color: #{$white-color};
+  --global-bg-color: #FAF8F3;
   --global-code-bg-color: #{$code-bg-color-light};
-  --global-text-color: #{$black-color};
-  --global-text-color-light: #{$grey-color};
-  --global-theme-color: #{$purple-color};
-  --global-hover-color: #{$purple-color};
+  --global-text-color: #2c2c2c;
+  --global-text-color-light: #6b6b6b;
+  --global-theme-color: #{$sage-primary};
+  --global-hover-color: #{color.adjust($sage-primary, $lightness: -8%)};
   --global-hover-text-color: #{$white-color};
-  --global-footer-bg-color: #{$grey-color-dark};
-  --global-footer-text-color: #{$grey-color-light};
+  --global-footer-bg-color: #3a3a3a;
+  --global-footer-text-color: #ccc;
   --global-footer-link-color: #{$white-color};
-  --global-distill-app-color: #{$grey-color};
-  --global-divider-color: rgba(0, 0, 0, 0.1);
+  --global-distill-app-color: #6b6b6b;
+  --global-divider-color: #{rgba($sage-primary-light, 0.15)};
   --global-card-bg-color: #{$white-color};
   --global-highlight-color: #{$red-color-dark};
-  --global-back-to-top-bg-color: rgba(
-    #{color.channel($black-color, "red", $space: rgb)},
-    #{color.channel($black-color, "green", $space: rgb)},
-    #{color.channel($black-color, "blue", $space: rgb)},
-    0.4
-  );
+  --global-back-to-top-bg-color: rgba(0, 0, 0, 0.35);
   --global-back-to-top-text-color: #{$white-color};
   --global-newsletter-bg-color: #{$white-color};
-  --global-newsletter-text-color: #{$black-color};
+  --global-newsletter-text-color: #2c2c2c;
+
+  // Layered design system
+  --global-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --global-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05), 0 12px 28px rgba(0, 0, 0, 0.04);
+  --global-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.06), 0 24px 56px rgba(0, 0, 0, 0.05);
+  // Liquid glass: very faint warm-white tint so card barely separates from bg
+  --global-section-bg: #{rgba($white-color, 0.55)};
+  --global-card-border: #{rgba($sage-primary-light, 0.07)};
+  --global-accent-bg: #{rgba($sage-accent, 0.35)};
+  --global-divider-gradient: linear-gradient(to right, transparent, #{rgba($sage-primary-light, 0.2)}, transparent);
+  --global-glow-color: #{rgba($sage-warm, 0.18)};
+  --global-gradient-start: #{$sage-primary};
+  --global-gradient-end: #{$sage-secondary};
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
@@ -78,41 +86,50 @@
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --global-bg-color: #{$grey-color-dark};
+  --global-bg-color: #{$dark-deep};
   --global-code-bg-color: #{$code-bg-color-dark};
-  --global-text-color: #{$grey-color-light};
-  --global-text-color-light: #{$grey-color};
-  --global-theme-color: #{$cyan-color};
-  --global-hover-color: #{$cyan-color};
+  --global-text-color: #{$dark-text};
+  --global-text-color-light: #{$dark-text-light};
+  --global-theme-color: #{$dark-secondary};
+  --global-hover-color: #{color.adjust($dark-secondary, $lightness: 10%)};
   --global-hover-text-color: #{$white-color};
-  --global-footer-bg-color: #{$grey-color-light};
-  --global-footer-text-color: #{$grey-color-dark};
-  --global-footer-link-color: #{$black-color};
-  --global-distill-app-color: #{$grey-color-light};
-  --global-divider-color: #424246;
-  --global-card-bg-color: #{$grey-900};
-  --global-back-to-top-bg-color: rgba(
-    #{color.channel($white-color, "red", $space: rgb)},
-    #{color.channel($white-color, "green", $space: rgb)},
-    #{color.channel($white-color, "blue", $space: rgb)},
-    0.5
-  );
-  --global-back-to-top-text-color: #{$black-color};
-  --global-newsletter-bg-color: #{$grey-color-light};
-  --global-newsletter-text-color: #{$grey-color-dark};
+  --global-footer-bg-color: #{color.adjust($dark-deep, $lightness: -2%)};
+  --global-footer-text-color: #{$dark-text};
+  --global-footer-link-color: #{$dark-text};
+  --global-distill-app-color: #{$dark-text-light};
+  --global-divider-color: rgba(255, 255, 255, 0.08);
+  --global-card-bg-color: #{$dark-card};
+  --global-highlight-color: #e57373;
+  --global-back-to-top-bg-color: rgba(255, 255, 255, 0.12);
+  --global-back-to-top-text-color: #{$dark-text};
+  --global-newsletter-bg-color: #{$dark-card};
+  --global-newsletter-text-color: #{$dark-text};
+
+  // Layered design system (dark) — liquid glass on deep navy
+  --global-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.35);
+  --global-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45), 0 12px 28px rgba(0, 0, 0, 0.4);
+  --global-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.45), 0 24px 56px rgba(0, 0, 0, 0.4);
+  // Liquid glass: very faint white-tinted card barely lifts from deep bg
+  --global-section-bg: #{rgba($dark-card, 0.45)};
+  --global-card-border: #{rgba($dark-secondary, 0.08)};
+  --global-accent-bg: #{rgba($dark-secondary-base, 0.07)};
+  --global-divider-gradient: linear-gradient(to right, transparent, #{rgba($dark-secondary, 0.12)}, transparent);
+  --global-glow-color: #{rgba($dark-secondary, 0.07)};
+  --global-gradient-start: #{$dark-secondary};
+  --global-gradient-end: #{color.adjust($dark-secondary, $lightness: 12%)};
 
   --global-tip-block: #42b983;
-  --global-tip-block-bg: #e2f5ec;
-  --global-tip-block-text: #215d42;
-  --global-tip-block-title: #359469;
+  --global-tip-block-bg: #1a3d2d;
+  --global-tip-block-text: #a7dbc1;
+  --global-tip-block-title: #42b983;
   --global-warning-block: #e7c000;
-  --global-warning-block-bg: #fff8d8;
-  --global-warning-block-text: #6b5900;
-  --global-warning-block-title: #b29400;
-  --global-danger-block: #c00;
-  --global-danger-block-bg: #ffe0e0;
-  --global-danger-block-text: #600;
-  --global-danger-block-title: #c00;
+  --global-warning-block-bg: #3d3200;
+  --global-warning-block-text: #ffe082;
+  --global-warning-block-title: #e7c000;
+  --global-danger-block: #ef5350;
+  --global-danger-block-bg: #3d0000;
+  --global-danger-block-text: #ef9a9a;
+  --global-danger-block-title: #ef5350;
 
   .only-light {
     display: none;

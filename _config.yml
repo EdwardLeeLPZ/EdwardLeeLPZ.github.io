@@ -98,21 +98,19 @@ related_blog_posts:
   enabled: true
   max_related: 5
 
-# # Giscus comments (RECOMMENDED)
-# # Follow instructions on https://giscus.app/ to setup for your repo to fill out
-# # the information below.
-# giscus:
-#   repo: alshedivat/al-folio      # <your-github-user-name>/<your-github-repo-name>
-#   repo_id: MDEwOlJlcG9zaXRvcnk2MDAyNDM2NQ==
-#   category: Comments             # name of the category under which discussions will be created
-#   category_id: DIC_kwDOA5PmLc4CTBt6
-#   mapping: title                 # identify discussions by post title
-#   strict: 1                      # use strict identification mode
-#   reactions_enabled: 1           # enable (1) or disable (0) emoji reactions
-#   input_position: bottom         # whether to display input form below (bottom) or above (top) the comments
-#   theme: preferred_color_scheme  # name of the color scheme (preferred works well with al-folio light/dark mode)
-#   emit_metadata: 0
-#   lang: en
+# Giscus comments
+giscus:
+  repo: EdwardLeeLPZ/EdwardLeeLPZ.github.io
+  repo_id: R_kgDOKUKFKA
+  category: Comments
+  category_id: DIC_kwDOKUKFKM4C7Ai1
+  mapping: pathname
+  strict: 0
+  reactions_enabled: 1
+  input_position: bottom
+  theme: preferred_color_scheme
+  emit_metadata: 0
+  lang: en
 
 # # Disqus comments (DEPRECATED)
 # disqus_shortname: al-folio # put your disqus shortname
@@ -441,7 +439,7 @@ third_party_libraries:
     version: "5.5.0"
   google_fonts:
     url:
-      fonts: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap"
+      fonts: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@100;300;400;500;700&family=Material+Icons&display=swap"
   highlightjs:
     integrity:
       css:

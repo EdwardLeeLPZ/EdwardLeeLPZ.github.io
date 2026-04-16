@@ -168,6 +168,10 @@ ul.task-list input[type="checkbox"] {
 
 .card {
   background-color: var(--global-card-bg-color);
+  border: 1px solid var(--global-card-border);
+  border-radius: 8px;
+  box-shadow: none;
+  transition: none;
 
   .card-img {
     width: 100%;
@@ -175,11 +179,13 @@ ul.task-list input[type="checkbox"] {
   }
 
   .card-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     color: var(--global-text-color);
   }
 
   .card-body {
-    padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+    padding: 1.25rem;
   }
 }
 
@@ -241,18 +247,23 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-// Navbar customization
+// Navbar customization — frosted glass modern bar
 
 .navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
+  box-shadow: 0 1px 0 var(--global-divider-color);
+  border-bottom: none;
   background-color: var(--global-bg-color);
-  opacity: 0.95;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  transition: background-color 0.3s ease;
 }
 
 .navbar .dropdown-menu {
   background-color: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
+  border: 1px solid var(--global-card-border);
+  border-radius: 10px;
+  box-shadow: var(--global-shadow-md);
+  padding: 0.4rem 0;
 
   a:not(.active) {
     color: var(--global-text-color);
@@ -260,6 +271,7 @@ ul.task-list input[type="checkbox"] {
 
   a:hover {
     color: var(--global-hover-color);
+    background-color: var(--global-accent-bg);
   }
 
   .dropdown-divider {
@@ -269,10 +281,14 @@ ul.task-list input[type="checkbox"] {
 
 .dropdown-item {
   color: var(--global-text-color);
+  border-radius: 6px;
+  margin: 0 0.3rem;
+  padding: 0.45rem 0.9rem;
+  width: calc(100% - 0.6rem);
 
   &:hover {
     color: var(--global-hover-color);
-    background-color: var(--global-bg-color);
+    background-color: var(--global-accent-bg);
   }
 }
 
@@ -284,21 +300,56 @@ ul.task-list input[type="checkbox"] {
   }
 
   .navbar-brand {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
     color: var(--global-text-color);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
   }
 
   .navbar-nav .nav-item .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
     color: var(--global-text-color);
+    padding: 0.5rem 0.75rem;
+    position: relative;
+    transition: color 0.2s ease;
+
+    // Animated underline on hover
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0.75rem;
+      right: 0.75rem;
+      height: 1.5px;
+      background: linear-gradient(to right, var(--global-gradient-start), var(--global-gradient-end));
+      border-radius: 1px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+    }
 
     &:hover {
       color: var(--global-hover-color);
+      &::after { transform: scaleX(1); }
     }
   }
 
   .navbar-nav .nav-item.active > .nav-link {
     background-color: inherit;
-    font-weight: bolder;
+    font-weight: 600;
     color: var(--global-theme-color);
+
+    &::after {
+      transform: scaleX(1);
+    }
 
     &:hover {
       color: var(--global-hover-color);
@@ -315,7 +366,6 @@ ul.task-list input[type="checkbox"] {
         width: 1.7rem;
         height: 1.7rem;
         margin-bottom: 0.5rem;
-        // margin: 0.5rem;
       }
 
       svg {
@@ -720,11 +770,14 @@ footer.sticky-bottom {
   }
 
   h2.bibliography {
-    color: var(--global-divider-color);
+    color: var(--global-text-color);
     border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;
     text-align: right;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   ol.bibliography {
@@ -743,8 +796,13 @@ footer.sticky-bottom {
 
         abbr {
           display: inline-block;
-          background-color: var(--global-theme-color);
+          background: linear-gradient(135deg, var(--global-gradient-start), var(--global-gradient-end));
           margin-bottom: 0.5rem;
+          padding: 4px 12px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          letter-spacing: 0.03em;
+          border-radius: 6px;
           color: var(--global-card-bg-color) !important;
 
           a {
@@ -763,7 +821,10 @@ footer.sticky-bottom {
       }
 
       .title {
-        font-weight: bolder;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.4;
       }
 
       .author {
@@ -1423,3 +1484,170 @@ figure.cover {
     color: #23212d !important;
   }
 }
+
+// ============================================================================
+// Layered design system — glassmorphism + ambient depth
+// ============================================================================
+
+// Section divider: subtle gradient fade
+.section-divider {
+  height: 1px;
+  background: var(--global-divider-gradient);
+  margin: 2.5rem 0;
+  border: none;
+}
+
+// Minimalist homepage sections — gradient top rule only, no card/shadow/float
+.homepage-section {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 0 1.25rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+
+  // Gradient top rule — stands alone, title comes below with margin-top gap
+  &::before {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      var(--global-gradient-start),
+      var(--global-gradient-end),
+      transparent 80%
+    );
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+}
+
+// Section heading layout: gradient line on top, title clearly below with gap
+.section-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--global-text-color);
+  margin-top: 0.9rem;    // gap between gradient line and title text
+  margin-bottom: 1.1rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-theme-color);
+      text-decoration: none;
+    }
+  }
+}
+
+// ============================================================================
+// Hero / About section
+// ============================================================================
+
+// Name title: gradient text effect
+.post-header .post-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  background: linear-gradient(135deg, var(--global-gradient-start), var(--global-gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+// Subtitle: elegant uppercase
+.post-header .desc {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--global-text-color-light);
+  margin-top: 0.5rem;
+}
+
+// Bio text: subtle left accent
+.about-bio {
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(to bottom, var(--global-gradient-start), var(--global-gradient-end)) 1;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+// Profile photo: flat, no shadow, no hover effect
+.profile {
+  img.rounded {
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    transition: none !important;
+  }
+}
+
+// ============================================================================
+// News — flat rows, larger date font, no shadow/float
+// ============================================================================
+
+.homepage-section .news,
+.news {
+  .table-borderless {
+    border-collapse: separate;
+    border-spacing: 0 4px;
+
+    tr {
+      background: transparent;
+      box-shadow: none;
+
+      th, td {
+        padding: 0.45rem 0.6rem;
+        vertical-align: middle;
+      }
+
+      th {
+        color: var(--global-theme-color);
+        font-weight: 600;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      td {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Publication description
+// ============================================================================
+
+.pub-description {
+  font-size: 0.85rem;
+  color: var(--global-text-color-light);
+  margin-top: 0.15rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+// Publication link buttons: micro-interaction polish
+.publications .links {
+  a.btn {
+    border-radius: 6px;
+    font-size: 0.72rem;
+    transition: all 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+

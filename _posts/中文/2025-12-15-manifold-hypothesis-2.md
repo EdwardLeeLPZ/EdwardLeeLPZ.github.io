@@ -4,6 +4,7 @@ title: 流形假设(Manifold Hypothesis)下的思考·二
 date: 2025-12-15 00:00:00
 tags: Tech-Blog
 categories: 中文
+giscus_comments: true
 ---
 
 ## **引言：架构的演进与来时的路**

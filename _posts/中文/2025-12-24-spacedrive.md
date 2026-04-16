@@ -4,6 +4,7 @@ title: SpaceDrive：为自动驾驶VLA注入空间智能
 date: 2025-12-24 00:00:00
 tags: Paper
 categories: 中文
+giscus_comments: true
 ---
 
 <div class="row mt-3">

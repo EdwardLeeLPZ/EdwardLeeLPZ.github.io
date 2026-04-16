@@ -4,6 +4,7 @@ title: SpaceDrive：Infusing Spatial Awareness into VLM-based Autonomous Driving
 date: 2025-12-24 00:00:00
 tags: Paper
 categories: English
+giscus_comments: true
 ---
 
 <div class="row mt-3">

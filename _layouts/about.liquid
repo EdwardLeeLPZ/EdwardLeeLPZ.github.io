@@ -38,30 +38,58 @@ layout: default
       </div>
     {% endif %}
 
-    <div class="clearfix">{{ content }}</div>
+    <div class="clearfix about-bio">{{ content }}</div>
 
     <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
-      <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
-      </h2>
-      {% include news.liquid limit=true %}
+      <div class="homepage-section">
+        <h2 class="section-heading">
+          <a href="{{ '/news/' | relative_url }}">News</a>
+        </h2>
+        {% include news.liquid limit=true %}
+      </div>
     {% endif %}
 
     <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
-      </h2>
-      {% include latest_posts.liquid %}
+      <div class="homepage-section">
+        <h2 class="section-heading">
+          <a href="{{ '/blog/' | relative_url }}">Latest Posts</a>
+        </h2>
+        {% include latest_posts.liquid %}
+      </div>
     {% endif %}
 
     <!-- Selected papers -->
     {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
-      </h2>
-      {% include selected_papers.liquid %}
+      <div class="homepage-section">
+        <h2 class="section-heading">
+          <a href="{{ '/publications/' | relative_url }}">Publication Highlights</a>
+        </h2>
+        {% include selected_papers.liquid %}
+      </div>
+    {% endif %}
+
+    <!-- English Blogs -->
+    {% assign english_posts = site.posts | where_exp: "p", "p.path contains 'English'" %}
+    {% if english_posts.size > 0 %}
+      <div class="homepage-section">
+        <h2 class="section-heading">
+          <a href="{{ '/blog/' | relative_url }}">Blogs</a>
+        </h2>
+        <div class="news">
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              {% for post in english_posts limit: 5 %}
+                <tr>
+                  <th scope="row" style="width:20%">{{ post.date | date: '%b %d, %Y' }}</th>
+                  <td><a class="news-title" href="{{ post.url | relative_url }}">{{ post.title }}</a></td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
     {% endif %}
 
     <!-- Social -->

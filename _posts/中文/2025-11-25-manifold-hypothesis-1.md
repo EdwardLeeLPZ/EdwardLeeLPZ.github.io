@@ -4,6 +4,7 @@ title: 流形假设(Manifold Hypothesis)下的思考·一
 date: 2025-11-25 00:00:00
 tags: Tech-Blog
 categories: 中文
+giscus_comments: true
 ---
 
 ## **引言：高维噪声中的几何秩序**

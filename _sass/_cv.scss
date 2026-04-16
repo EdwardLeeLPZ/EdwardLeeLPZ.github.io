@@ -1,6 +1,63 @@
 /*****************************
+ * CV section — minimal gradient-rule style (no card)
+ *****************************/
+
+.cv-section {
+  background: transparent;
+  border: none;
+  padding: 1.75rem 0 1.25rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      var(--global-gradient-start),
+      var(--global-gradient-end),
+      transparent 80%
+    );
+    border-radius: 2px;
+    margin-bottom: 1.25rem;
+    opacity: 0.5;
+  }
+}
+
+.cv-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--global-text-color);
+  margin-top: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/*****************************
  * CV shared styles
  *****************************/
+
+// Strip Bootstrap's list-group default backgrounds in dark mode
+.cv-section {
+  .list-group-item {
+    background-color: transparent !important;
+    border-color: var(--global-divider-color) !important;
+    color: var(--global-text-color);
+  }
+}
+
+// Year badge — theme color instead of Bootstrap danger-color-dark
+.cv-year-badge {
+  background: linear-gradient(135deg, var(--global-gradient-start), var(--global-gradient-end)) !important;
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.5rem;
+}
 
 div.container-link-button {
   margin-right: 0.5rem;
@@ -193,6 +250,56 @@ ul.timeline li::before {
   position: absolute;
   left: 2px;
   top: -0.5rem;
+}
+
+/*****************************
+ * CV PDF viewer styles
+ *****************************/
+
+.pdf-viewer-container {
+  border: 1px solid var(--global-card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--global-shadow-sm);
+  background: var(--global-card-bg-color);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  #pdf-pages {
+    min-height: 400px;
+
+    canvas {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.pdf-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-top: 1px solid var(--global-card-border);
+  background: var(--global-section-bg);
+
+  .btn {
+    border: 1px solid var(--global-text-color);
+    color: var(--global-text-color);
+
+    &:hover {
+      border-color: var(--global-theme-color);
+      color: var(--global-theme-color);
+    }
+  }
+
+  #pdf-page-info {
+    font-size: 0.875rem;
+    color: var(--global-text-color-light);
+  }
 }
 
 /*ul.timeline::before {
