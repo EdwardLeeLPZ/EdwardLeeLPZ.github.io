@@ -1587,6 +1587,27 @@ figure.cover {
   margin-top: 0.5rem;
 }
 
+// About page slogan — styled as a pull quote
+blockquote.about-slogan {
+  border-left: none;
+  background: transparent;
+  padding: 0.5rem 0 0;
+  margin: 1.25rem 0 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--global-distill-app-color);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+
+  p {
+    margin: 0;
+    color: var(--global-distill-app-color);
+
+    &::before { content: '\201C'; }
+    &::after  { content: '\201D'; }
+  }
+}
+
 // Bio text: subtle left accent — desktop only (mobile: no float so no overlap issue,
 // but the border would appear next to the photo; suppress on small screens)
 .about-bio {
