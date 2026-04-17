@@ -28,5 +28,5 @@ My research focuses on building autonomous systems that can perceive, model, and
 
 I am a PhD researcher at the [University of Tübingen](https://uni-tuebingen.de/en) and [Mercedes-Benz AG R&D](https://www.mercedes-benz.com/en/), advised by [Prof. Andreas Geiger](https://www.cvlibs.net/) and [Prof. Andreas Zell](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/). My work bridges academic research and industrial-scale engineering, spanning  large-scale data pipelines and real-world vehicle deployments, with publications at CVPR, ICCV, ECCV, and IJCAI as first or core author across four consecutive years.
 
-> *Getting AI into the physical world is pretty cool.*
+> *Getting AI into the physical world is pretty cool I guess.*
 {: .about-slogan }

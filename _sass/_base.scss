@@ -1595,13 +1595,14 @@ blockquote.about-slogan {
   margin: 1.25rem 0 0;
   font-size: 1.05rem;
   font-style: italic;
-  color: var(--global-distill-app-color);
+  color: var(--global-text-color);
+  opacity: 0.45;
   letter-spacing: 0.01em;
   line-height: 1.6;
 
   p {
     margin: 0;
-    color: var(--global-distill-app-color);
+    color: inherit;
 
     &::before { content: '\201C'; }
     &::after  { content: '\201D'; }
