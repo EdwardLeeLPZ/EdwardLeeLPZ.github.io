@@ -5,6 +5,7 @@ assets/css/main.scss
 assets/js/distillpub/template.v2.js
 assets/js/search/*.js
 _site/**
+Users/**
 node_modules/**
 .claude/**
 principal.md
