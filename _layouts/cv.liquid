@@ -15,8 +15,11 @@ layout: default
         {% for entry in site.data.cv %}
           <a class="anchor" id="{{ entry.title }}"></a>
           <div class="cv-section">
-            <h3 class="cv-section-title">{{ entry.title }}</h3>
-            <div>
+            <div class="cv-section__heading">
+              <span class="cv-section__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+              <h3 class="cv-section-title">{{ entry.title }}</h3>
+            </div>
+            <div class="cv-section__body">
               {% if entry.type == 'list' %}
                 {% include cv/list.liquid %}
               {% elsif entry.type == 'map' %}
@@ -36,19 +39,25 @@ layout: default
       </div>
       {% if page.cv_pdf %}
         <div class="cv-section">
-          <h3 class="cv-section-title">Resume</h3>
-          <div class="pdf-viewer-container" oncontextmenu="return false;">
-            <div id="pdf-pages"></div>
-            <div class="pdf-controls">
-              <button id="pdf-prev" class="btn btn-sm z-depth-0"><i class="fa-solid fa-chevron-left"></i> Prev</button>
-              <span id="pdf-page-info"></span>
-              <button id="pdf-next" class="btn btn-sm z-depth-0">Next <i class="fa-solid fa-chevron-right"></i></button>
+          <div class="cv-section__heading">
+            <span class="cv-section__index">CV</span>
+            <h3 class="cv-section-title">Resume</h3>
+          </div>
+          <div class="cv-section__body">
+            <div class="pdf-viewer-container" oncontextmenu="return false;">
+              <div id="pdf-pages"></div>
+              <div class="pdf-controls">
+                <button id="pdf-prev" class="btn btn-sm z-depth-0"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                <span id="pdf-page-info"></span>
+                <button id="pdf-next" class="btn btn-sm z-depth-0">Next <i class="fa-solid fa-chevron-right"></i></button>
+              </div>
             </div>
           </div>
-        </div><!-- .cv-section -->
+        </div>
+        <!-- .cv-section -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
         <script>
-          (function() {
+          (function () {
             var url = '{{ page.cv_pdf | prepend: "assets/pdf/" | relative_url }}';
             var pdfDoc = null;
             var pageNum = 1;
@@ -60,7 +69,7 @@ layout: default
 
             function renderPage(num) {
               rendering = true;
-              pdfDoc.getPage(num).then(function(page) {
+              pdfDoc.getPage(num).then(function (page) {
                 var containerWidth = container.clientWidth;
                 var unscaledViewport = page.getViewport({ scale: 1 });
                 var scale = containerWidth / unscaledViewport.width;
@@ -75,25 +84,25 @@ layout: default
                 canvas.width = viewport.width;
                 container.appendChild(canvas);
 
-                page.render({ canvasContext: ctx, viewport: viewport }).promise.then(function() {
+                page.render({ canvasContext: ctx, viewport: viewport }).promise.then(function () {
                   rendering = false;
                 });
               });
               pageInfo.textContent = num + ' / ' + pdfDoc.numPages;
             }
 
-            document.getElementById('pdf-prev').addEventListener('click', function() {
+            document.getElementById('pdf-prev').addEventListener('click', function () {
               if (pageNum <= 1 || rendering) return;
               pageNum--;
               renderPage(pageNum);
             });
-            document.getElementById('pdf-next').addEventListener('click', function() {
+            document.getElementById('pdf-next').addEventListener('click', function () {
               if (!pdfDoc || pageNum >= pdfDoc.numPages || rendering) return;
               pageNum++;
               renderPage(pageNum);
             });
 
-            pdfjsLib.getDocument(url).promise.then(function(pdf) {
+            pdfjsLib.getDocument(url).promise.then(function (pdf) {
               pdfDoc = pdf;
               renderPage(1);
             });
@@ -122,8 +131,11 @@ layout: default
           {% if data[0] == 'meta' or data[1].size == 0 %} {% continue %} {% endif %}
           <a class="anchor" id="{{ data[0] }}"></a>
           <div class="cv-section">
-            <h3 class="cv-section-title">{{ data[0] | capitalize }}</h3>
-            <div>
+            <div class="cv-section__heading">
+              <span class="cv-section__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+              <h3 class="cv-section-title">{{ data[0] | capitalize }}</h3>
+            </div>
+            <div class="cv-section__body">
               {% case data[0] %}
                 {% when 'basics' %}
                   {% include resume/basics.liquid %}
@@ -133,8 +145,6 @@ layout: default
                   {% include resume/work.liquid %}
                 {% when 'volunteer' %}
                   {% include resume/volunteer.liquid %}
-                {% when 'projects' %}
-                  {% include resume/projects.liquid %}
                 {% when 'awards' %}
                   {% include resume/awards.liquid %}
                 {% when 'skills' %}
@@ -153,7 +163,8 @@ layout: default
 
               {% endcase %}
             </div>
-          </div><!-- .cv-section -->
+          </div>
+          <!-- .cv-section -->
         {% endfor %}
       </div>
     </article>

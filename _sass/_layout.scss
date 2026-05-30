@@ -7,8 +7,7 @@ body {
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
   overflow-x: hidden; // prevent horizontal scroll from orbs or floated elements
-  background-image:
-    radial-gradient(ellipse 80% 40% at 15% 10%, var(--global-glow-color) 0%, transparent 60%),
+  background-image: radial-gradient(ellipse 80% 40% at 15% 10%, var(--global-glow-color) 0%, transparent 60%),
     radial-gradient(ellipse 60% 30% at 85% 85%, var(--global-glow-color) 0%, transparent 60%);
 
   h1,
@@ -41,7 +40,7 @@ body.sticky-bottom-footer {
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     border-radius: 50%;
     z-index: -1;

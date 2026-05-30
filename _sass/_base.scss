@@ -179,7 +179,7 @@ ul.task-list input[type="checkbox"] {
   }
 
   .card-title {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     color: var(--global-text-color);
   }
@@ -313,7 +313,7 @@ ul.task-list input[type="checkbox"] {
   }
 
   .navbar-brand {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 700;
     font-size: 1.05rem;
     letter-spacing: -0.01em;
@@ -326,7 +326,7 @@ ul.task-list input[type="checkbox"] {
   }
 
   .navbar-nav .nav-item .nav-link {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 0.88rem;
     font-weight: 500;
     color: var(--global-text-color);
@@ -336,7 +336,7 @@ ul.task-list input[type="checkbox"] {
 
     // Animated underline on hover
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 2px;
       left: 0.75rem;
@@ -351,7 +351,9 @@ ul.task-list input[type="checkbox"] {
 
     &:hover {
       color: var(--global-hover-color);
-      &::after { transform: scaleX(1); }
+      &::after {
+        transform: scaleX(1);
+      }
     }
   }
 
@@ -446,7 +448,6 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-#light-toggle,
 #search-toggle {
   padding: 0;
   border: 0;
@@ -834,7 +835,7 @@ footer.sticky-bottom {
       }
 
       .title {
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         font-weight: 700;
         font-size: 1rem;
         line-height: 1.4;
@@ -1522,16 +1523,11 @@ figure.cover {
 
   // Gradient top rule — stands alone, title comes below with margin-top gap
   &::before {
-    content: '';
+    content: "";
     display: block;
     height: 2px;
     width: 100%;
-    background: linear-gradient(
-      to right,
-      var(--global-gradient-start),
-      var(--global-gradient-end),
-      transparent 80%
-    );
+    background: linear-gradient(to right, var(--global-gradient-start), var(--global-gradient-end), transparent 80%);
     border-radius: 2px;
     opacity: 0.6;
   }
@@ -1539,12 +1535,12 @@ figure.cover {
 
 // Section heading layout: gradient line on top, title clearly below with gap
 .section-heading {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--global-text-color);
-  margin-top: 0.9rem;    // gap between gradient line and title text
+  margin-top: 0.9rem; // gap between gradient line and title text
   margin-bottom: 1.1rem;
 
   a {
@@ -1564,7 +1560,7 @@ figure.cover {
 
 // Name title: gradient text effect
 .post-header .post-title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 2.5rem;
   letter-spacing: -0.02em;
@@ -1578,7 +1574,7 @@ figure.cover {
 
 // Subtitle: elegant uppercase
 .post-header .desc {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.72rem;
@@ -1604,8 +1600,12 @@ blockquote.about-slogan {
     margin: 0;
     color: inherit;
 
-    &::before { content: '\201C'; }
-    &::after  { content: '\201D'; }
+    &::before {
+      content: "\201C";
+    }
+    &::after {
+      content: "\201D";
+    }
   }
 }
 
@@ -1646,7 +1646,8 @@ blockquote.about-slogan {
       background: transparent;
       box-shadow: none;
 
-      th, td {
+      th,
+      td {
         padding: 0.45rem 0.6rem;
         vertical-align: middle;
       }
@@ -1691,4 +1692,3 @@ blockquote.about-slogan {
     }
   }
 }
-

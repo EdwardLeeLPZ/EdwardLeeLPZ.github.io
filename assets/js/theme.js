@@ -3,12 +3,12 @@
 // Toggle through light, dark, and system theme settings.
 let toggleThemeSetting = () => {
   let themeSetting = determineThemeSetting();
-  if (themeSetting == "system") {
+  if (themeSetting == "dark") {
     setThemeSetting("light");
   } else if (themeSetting == "light") {
-    setThemeSetting("dark");
-  } else {
     setThemeSetting("system");
+  } else {
+    setThemeSetting("dark");
   }
 };
 
@@ -64,19 +64,6 @@ let applyTheme = () => {
       tables[i].classList.add("table-dark");
     } else {
       tables[i].classList.remove("table-dark");
-    }
-  }
-
-  // Set jupyter notebooks themes.
-  let jupyterNotebooks = document.getElementsByClassName("jupyter-notebook-iframe-container");
-  for (let i = 0; i < jupyterNotebooks.length; i++) {
-    let bodyElement = jupyterNotebooks[i].getElementsByTagName("iframe")[0].contentWindow.document.body;
-    if (theme == "dark") {
-      bodyElement.setAttribute("data-jp-theme-light", "false");
-      bodyElement.setAttribute("data-jp-theme-name", "JupyterLab Dark");
-    } else {
-      bodyElement.setAttribute("data-jp-theme-light", "true");
-      bodyElement.setAttribute("data-jp-theme-name", "JupyterLab Light");
     }
   }
 
@@ -252,11 +239,19 @@ let transTheme = () => {
 };
 
 // Determine the expected state of the theme toggle, which can be "dark", "light", or
-// "system". Default is "system".
+// "system". Default is dark to match the site's current visual identity.
 let determineThemeSetting = () => {
   let themeSetting = localStorage.getItem("theme");
+  let themeDefaultVersion = "dark-home-2026";
+  let storedDefaultVersion = localStorage.getItem("theme-default-version");
+
+  if (storedDefaultVersion != themeDefaultVersion) {
+    themeSetting = "dark";
+    localStorage.setItem("theme-default-version", themeDefaultVersion);
+  }
+
   if (themeSetting != "dark" && themeSetting != "light" && themeSetting != "system") {
-    themeSetting = "system";
+    themeSetting = "dark";
   }
   return themeSetting;
 };
@@ -286,9 +281,11 @@ let initTheme = () => {
   document.addEventListener("DOMContentLoaded", function () {
     const mode_toggle = document.getElementById("light-toggle");
 
-    mode_toggle.addEventListener("click", function () {
-      toggleThemeSetting();
-    });
+    if (mode_toggle) {
+      mode_toggle.addEventListener("click", function () {
+        toggleThemeSetting();
+      });
+    }
   });
 
   // Add event listener to the system theme preference change.

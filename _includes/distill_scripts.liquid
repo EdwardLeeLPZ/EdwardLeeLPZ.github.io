@@ -170,9 +170,6 @@
 <script defer src="{{ '/assets/js/common.js' | relative_url | bust_file_cache }}"></script>
 <script defer src="{{ '/assets/js/copy_code.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 
-<!-- Jupyter Open External Links New Tab -->
-<script defer src="{{ '/assets/js/jupyter_new_tab.js' | relative_url | bust_file_cache }}"></script>
-
 <!-- Removed Badges -->
 
 {% if site.enable_math %}
@@ -269,11 +266,6 @@
     ></script>
     <script defer src="{{ '/assets/js/venobox-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
   {% endif %}
-{% endif %}
-
-{% if page.tabs %}
-  <!-- Jekyll Tabs -->
-  <script src="{{ '/assets/js/tabs.min.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 
 {% if site.back_to_top %}

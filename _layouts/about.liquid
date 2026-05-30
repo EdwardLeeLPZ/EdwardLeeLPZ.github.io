@@ -1,108 +1,149 @@
 ---
 layout: default
 ---
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">
-      {% if site.title == 'blank' %}
-        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
-        {{ site.last_name }}
-      {% else %}
-        {{ site.title }}
+<div class="home-shell">
+  <header class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__copy">
+      {% if page.hero_eyebrow %}
+        <p class="home-eyebrow">
+          <span class="home-eyebrow__dot" aria-hidden="true"></span>
+          {{ page.hero_eyebrow }}
+        </p>
       {% endif %}
-    </h1>
-    <p class="desc">{{ page.subtitle }}</p>
-  </header>
 
-  <article>
-    {% if page.profile %}
-      <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
+      <h1 id="home-title" class="home-title">{{ page.hero_title | default: page.title }}</h1>
+      <p class="home-subtitle">{{ page.subtitle }}</p>
+
+      <div class="home-bio">{{ content }}</div>
+    </div>
+
+    <div class="home-hero__visual">
+      <div class="home-network" aria-hidden="true">
+        <svg viewBox="0 0 420 420" role="img">
+          <path class="home-network__line" d="M78 132 L164 86 L282 120 L338 228 L238 322 L110 276 Z"></path>
+          <path class="home-network__line home-network__line--soft" d="M164 86 L238 322 M78 132 L338 228 M282 120 L110 276"></path>
+          <circle class="home-network__node" cx="78" cy="132" r="4"></circle>
+          <circle class="home-network__node home-network__node--delay" cx="164" cy="86" r="5"></circle>
+          <circle class="home-network__node" cx="282" cy="120" r="4"></circle>
+          <circle class="home-network__node home-network__node--delay" cx="338" cy="228" r="5"></circle>
+          <circle class="home-network__node" cx="238" cy="322" r="4"></circle>
+          <circle class="home-network__node home-network__node--delay" cx="110" cy="276" r="5"></circle>
+        </svg>
+      </div>
+
+      {% if page.profile and page.profile.image %}
+        <div class="home-profile-card">
           {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
-          {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1
-      rounded' %}
-          {% endif %}
-          {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
-      30vw, 95vw"{% endcapture %}
           {%
-            include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
+            include figure.liquid
+            loading="eager"
+            path=profile_image_path
+            class="home-profile-card__image"
+            sizes="(min-width: 992px) 360px, 82vw"
+            alt="Portrait of Peizheng Li"
             cache_bust=true
           %}
-        {% endif %}
-        {% if page.profile.more_info %}
-          <div class="more-info">{{ page.profile.more_info }}</div>
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <article class="home-flow" aria-label="Homepage content">
+    <div class="home-flow__rail" aria-hidden="true"></div>
+
+    {% if page.research_pillars %}
+      <section class="home-step home-step--focus">
+        <div class="home-step__marker" aria-hidden="true"></div>
+        <div class="home-step__header">
+          <p class="home-step__kicker">01 · Research focus</p>
+          <h2>Modeling physical worlds across space, modality, and time.</h2>
+        </div>
+        <div class="home-pillars">
+          {% for pillar in page.research_pillars %}
+            <div class="home-pillar">
+              <span class="home-pillar__index">0{{ forloop.index }}</span>
+              <h3>{{ pillar.title }}</h3>
+              <p>{{ pillar.text }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
     {% endif %}
 
-    <div class="clearfix about-bio">{{ content }}</div>
-
-    <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
-      <div class="homepage-section">
-        <h2 class="section-heading">
-          <a href="{{ '/news/' | relative_url }}">News</a>
-        </h2>
+      <section class="home-step home-card">
+        <div class="home-step__marker" aria-hidden="true"></div>
+        <div class="home-card__header">
+          <div>
+            <p class="home-step__kicker">02 · Updates</p>
+            <h2><a href="{{ '/news/' | relative_url }}">Recent signals</a></h2>
+          </div>
+          <a class="home-card__link" href="{{ '/news/' | relative_url }}">All news</a>
+        </div>
         {% include news.liquid limit=true %}
-      </div>
+      </section>
     {% endif %}
 
-    <!-- Latest posts -->
-    {% if page.latest_posts and page.latest_posts.enabled %}
-      <div class="homepage-section">
-        <h2 class="section-heading">
-          <a href="{{ '/blog/' | relative_url }}">Latest Posts</a>
-        </h2>
-        {% include latest_posts.liquid %}
-      </div>
-    {% endif %}
-
-    <!-- Selected papers -->
     {% if page.selected_papers %}
-      <div class="homepage-section">
-        <h2 class="section-heading">
-          <a href="{{ '/publications/' | relative_url }}">Publication Highlights</a>
-        </h2>
+      <section class="home-step home-card home-card--papers">
+        <div class="home-step__marker" aria-hidden="true"></div>
+        <div class="home-card__header">
+          <div>
+            <p class="home-step__kicker">03 · Publications</p>
+            <h2><a href="{{ '/publications/' | relative_url }}">Publication highlights</a></h2>
+          </div>
+          <a class="home-card__link" href="{{ '/publications/' | relative_url }}">Full list</a>
+        </div>
         {% include selected_papers.liquid %}
-      </div>
+      </section>
     {% endif %}
 
-    <!-- English Blogs -->
-    {% assign english_posts = site.posts | where_exp: "p", "p.path contains 'English'" %}
+    {% assign english_posts = site.posts | where_exp: 'p', "p.path contains 'English'" %}
     {% if english_posts.size > 0 %}
-      <div class="homepage-section">
-        <h2 class="section-heading">
-          <a href="{{ '/blog/' | relative_url }}">Blogs</a>
-        </h2>
-        <div class="news">
+      <section class="home-step home-card">
+        <div class="home-step__marker" aria-hidden="true"></div>
+        <div class="home-card__header">
+          <div>
+            <p class="home-step__kicker">04 · Writing</p>
+            <h2><a href="{{ '/blog/' | relative_url }}">Research notes</a></h2>
+          </div>
+          <a class="home-card__link" href="{{ '/blog/' | relative_url }}">All posts</a>
+        </div>
+        <div class="news home-posts">
           <div class="table-responsive">
             <table class="table table-sm table-borderless">
               {% for post in english_posts limit: 5 %}
                 <tr>
-                  <th scope="row" style="width:20%">{{ post.date | date: '%b %d, %Y' }}</th>
-                  <td><a class="news-title" href="{{ post.url | relative_url }}">{{ post.title }}</a></td>
+                  <th scope="row">{{ post.date | date: '%b %d, %Y' }}</th>
+                  <td>
+                    <a class="news-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                  </td>
                 </tr>
               {% endfor %}
             </table>
           </div>
         </div>
-      </div>
+      </section>
     {% endif %}
 
-    <!-- Social -->
     {% if page.social %}
-      <div class="social">
-        <div class="contact-icons">{% include social.liquid %}</div>
-
-        <div class="contact-note">{{ site.contact_note }}</div>
-      </div>
-    {% endif %}
-
-    {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
-      {% include newsletter.liquid center=true %}
+      <section class="home-step home-card home-contact">
+        <div class="home-step__marker" aria-hidden="true"></div>
+        <div class="home-card__header">
+          <div>
+            <p class="home-step__kicker">05 · Contact & positions</p>
+            <h2>{{ page.contact_heading | default: 'Open to research conversations and collaborations.' }}</h2>
+          </div>
+        </div>
+        <div class="social">
+          <div class="contact-icons">{% include social.liquid %}</div>
+          <div class="contact-note">{{ site.contact_note }}</div>
+        </div>
+      </section>
     {% endif %}
   </article>
+
+  {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
+    {% include newsletter.liquid center=true %}
+  {% endif %}
 </div>

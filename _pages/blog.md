@@ -18,16 +18,13 @@ pagination:
 
 <div class="post">
 
-{% assign blog_name_size = site.blog_name | size %}
-{% assign blog_description_size = site.blog_description | size %}
+{% assign blog_name = site.blog_name | default: page.title %}
+{% assign blog_description = site.blog_description | default: 'Research notes, technical writing, and selected project updates.' %}
 
-{% if blog_name_size > 0 or blog_description_size > 0 %}
-
-  <div class="header-bar">
-    <h1>{{ site.blog_name }}</h1>
-    <h2>{{ site.blog_description }}</h2>
-  </div>
-  {% endif %}
+<div class="header-bar">
+  <h1>{{ blog_name }}</h1>
+  <h2>{{ blog_description }}</h2>
+</div>
 
 {% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
 
