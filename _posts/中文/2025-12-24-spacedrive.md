@@ -19,11 +19,9 @@ giscus_comments: true
 
 **项目主页：** [https://zhenghao2519.github.io/SpaceDrive_Page/](https://zhenghao2519.github.io/SpaceDrive_Page/)
 
-**作者名单：** [_Peizheng Li_](https://edwardleelpz.github.io/), [_Zhenghao Zhang_](https://zhenghao2519.github.io/), [_David Holtz_](https://scholar.google.com/citations?user=gf09DbwAAAAJ&hl=en&oi=sra), [_Hang Yu_](https://scholar.google.com/citations?user=yEY9n1EAAAAJ&hl=en), [_Yutong Yang_](https://scholar.google.com/citations?user=kg9OvU0AAAAJ&hl=en), [_Yuzhi Lai_](https://scholar.google.com/citations?user=9Z6Gjo4AAAAJ&hl=en), [_Rui Song_](https://rruisong.github.io/), [_Andreas Geiger_](https://www.cvlibs.net/), [_Andreas Zell_](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/)  
+**作者名单：** [_Peizheng Li_](https://edwardleelpz.github.io/), [_Zhenghao Zhang_](https://zhenghao2519.github.io/), [_David Holtz_](https://scholar.google.com/citations?user=gf09DbwAAAAJ&hl=en&oi=sra), [_Hang Yu_](https://scholar.google.com/citations?user=yEY9n1EAAAAJ&hl=en), [_Yutong Yang_](https://scholar.google.com/citations?user=kg9OvU0AAAAJ&hl=en), [_Yuzhi Lai_](https://scholar.google.com/citations?user=9Z6Gjo4AAAAJ&hl=en), [_Rui Song_](https://rruisong.github.io/), [_Andreas Geiger_](https://www.cvlibs.net/), [_Andreas Zell_](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/)
 
-
-**作者机构：** Mercedes-Benz AG，University of Tübingen，Tübingen AI Center，TU Munich，Karlsruhe Institute of Technology，University of Stuttgart，UCLA  
-
+**作者机构：** Mercedes-Benz AG，University of Tübingen，Tübingen AI Center，TU Munich，Karlsruhe Institute of Technology，University of Stuttgart，UCLA
 
 ## **摘要**
 
@@ -33,8 +31,8 @@ VLA凭借其强大的泛化能力和语义理解能力逐渐成为端到端自�
 
 当前VLM在自动驾驶应用中面临两个根本性的系统缺陷，这限制了其作为通用驾驶Agent的上限：
 
--   **2D语义与3D几何的割裂**：VLM主要在大规模2D图像-文本对上进行预训练，极度缺乏3D空间先验，导致场景描述模糊和空间推理能力存在缺陷。
--   **数字 token 化的缺陷**：语言模型中坐标通常被逐位拆解为字符或数字（例如将坐标"3.82"拆解为"3", ".", "8", "2"），其本质是token联合分布的拟合而非数值计算。它既忽略了数值的连续邻近结构（例如"3.72"比"3.12"接近"3.82"），也会把不同位的 token 重要性平均化（例如"3.82"中"3"和"2"的Loss权重相同），从机制上拉低了连续数值预测精度与稳定性。
+- **2D语义与3D几何的割裂**：VLM主要在大规模2D图像-文本对上进行预训练，极度缺乏3D空间先验，导致场景描述模糊和空间推理能力存在缺陷。
+- **数字 token 化的缺陷**：语言模型中坐标通常被逐位拆解为字符或数字（例如将坐标"3.82"拆解为"3", ".", "8", "2"），其本质是token联合分布的拟合而非数值计算。它既忽略了数值的连续邻近结构（例如"3.72"比"3.12"接近"3.82"），也会把不同位的 token 重要性平均化（例如"3.82"中"3"和"2"的Loss权重相同），从机制上拉低了连续数值预测精度与稳定性。
 
 而现有VLM-based planner常常忽略了上述问题，或直接采用特定的 embedding/queries 针对某个任务进行训练来预测坐标，难以被迁移到上游推理或者其他任务中。
 
@@ -44,9 +42,9 @@ VLA凭借其强大的泛化能力和语义理解能力逐渐成为端到端自�
 
 SpaceDrive框架的核心在于统一的空间接口：
 
--   **视觉侧**：用冻结深度估计器得到每个 patch 的绝对深度，投影为 3D 坐标，再经 PE 编码后加到对应视觉 token 上，得到 spatial-aware visual tokens。
--   **文本侧**：在 tokenizer 后扫描文本中的坐标表达，将其数值解析出来，经同一个 PE 编码器得到空间 token，替换原来的数字 token 序列，并用特殊前缀指示符 ⟨IND⟩ 标记。
--   **输出侧**：语言头正常生成文本；当生成 ⟨IND⟩ 时，后续 hidden state 送入 PE decoder直接回归 3D/BEV 坐标，取代生成数字的逐位生成。
+- **视觉侧**：用冻结深度估计器得到每个 patch 的绝对深度，投影为 3D 坐标，再经 PE 编码后加到对应视觉 token 上，得到 spatial-aware visual tokens。
+- **文本侧**：在 tokenizer 后扫描文本中的坐标表达，将其数值解析出来，经同一个 PE 编码器得到空间 token，替换原来的数字 token 序列，并用特殊前缀指示符 ⟨IND⟩ 标记。
+- **输出侧**：语言头正常生成文本；当生成 ⟨IND⟩ 时，后续 hidden state 送入 PE decoder直接回归 3D/BEV 坐标，取代生成数字的逐位生成。
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -145,7 +143,7 @@ $$
 
 论文对比了同一场景下（变道避让骑行者）纯文本和引入空间token方法的实际表现：
 
--   纯文本方法输出的轨迹规划退化为一条直线，且行进方向不断震荡，最终导致车辆向左大幅偏转直至撞上护栏；
+- 纯文本方法输出的轨迹规划退化为一条直线，且行进方向不断震荡，最终导致车辆向左大幅偏转直至撞上护栏；
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -153,7 +151,7 @@ $$
     </div>
 </div>
 
--   引入空间token的SpaceDrive+在观测到前方由缓慢的骑行者时，先试探加速寻找超车机会，发现邻车并未让行后减速创造安全插入间隙，再果断变道，并在变道完成前及时回正避免驶出道路。
+- 引入空间token的SpaceDrive+在观测到前方由缓慢的骑行者时，先试探加速寻找超车机会，发现邻车并未让行后减速创造安全插入间隙，再果断变道，并在变道完成前及时回正避免驶出道路。
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -161,12 +159,11 @@ $$
     </div>
 </div>
 
-
 ## **消融实验**
 
 为了进一步验证通用的3D PE如何在规划中发挥作用，论文进行了诸多消融实验并得出了以下结论：
 
--   **PE注入位置很关键**：仅把 PE 用在文本坐标替换而不注入视觉 token提升有限（因为此时PE无法对于对应位置视觉特征进行索引）；而把 3D PE 注入视觉 token 带来显著增益；当统一的位置编码应用于视觉和文本坐标流时，无论是否使用自我状态，规划性能都会提高，这强调了共享空间表示的价值。
+- **PE注入位置很关键**：仅把 PE 用在文本坐标替换而不注入视觉 token提升有限（因为此时PE无法对于对应位置视觉特征进行索引）；而把 3D PE 注入视觉 token 带来显著增益；当统一的位置编码应用于视觉和文本坐标流时，无论是否使用自我状态，规划性能都会提高，这强调了共享空间表示的价值。
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -174,15 +171,15 @@ $$
     </div>
 </div>
 
--   **PE编码器/解码器选择十分重要**：Sine-cosine 编码天然具备更好的平移等变性，有助于注意力机制理解 token 间空间关系，优于可学习的MLP encoder；RoPE 会与基座 VLM 的 RoPE 冲突导致输出出现语义不稳定；输出端直接反解sine-cosine 不适定，且 VLM 输出空间与输入嵌入空间不完全对齐，因此用可学习、逐坐标 waypoint 的 MLP decoder 更优。
-    
+- **PE编码器/解码器选择十分重要**：Sine-cosine 编码天然具备更好的平移等变性，有助于注意力机制理解 token 间空间关系，优于可学习的MLP encoder；RoPE 会与基座 VLM 的 RoPE 冲突导致输出出现语义不稳定；输出端直接反解sine-cosine 不适定，且 VLM 输出空间与输入嵌入空间不完全对齐，因此用可学习、逐坐标 waypoint 的 MLP decoder 更优。
+
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="/assets/img/blog_images/spacedrive/abl_pe_en_de.png" class="img-fluid rounded" caption="PE编码器与解码器消融实验"%}
     </div>
 </div>
 
--   **可学习的$$α_{PE}$$十分重要**：固定尺度的PE容易造成语义不稳定或收敛困难，而可学习α_{PE}显著改善 L2误差、碰撞率和越界率。
+- **可学习的$$α_{PE}$$十分重要**：固定尺度的PE容易造成语义不稳定或收敛困难，而可学习α\_{PE}显著改善 L2误差、碰撞率和越界率。
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -190,7 +187,7 @@ $$
     </div>
 </div>
 
--   **PE表征作为接口具备可迁移性**：同一套PE空间接口在 Qwen-VL 与 LLaVA 上都能保持相近收益，说明增益主要来自统一空间推理接口而非特定基座模型的特殊适配。
+- **PE表征作为接口具备可迁移性**：同一套PE空间接口在 Qwen-VL 与 LLaVA 上都能保持相近收益，说明增益主要来自统一空间推理接口而非特定基座模型的特殊适配。
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -204,9 +201,9 @@ $$
 
 SpaceDrive 对当下自动驾驶和 VLM 研究做出了几项重要贡献：
 
--   **通用空间表示**：引入统一的 3D 位置编码，在感知、推理和规划模块中始终如一地工作，代表了一项重要的架构创新。这种方法超越了特定任务的嵌入，迈向了更具通用性的空间智能。
--   **显式3D理解**：将空间编码与视觉token进行加性整合，在语义内容和 3D 位置之间创建了显式关联，从而实现了更准确的场景理解和推理。
--   **回归坐标数值本质**：通过用基于回归的专用解码取代逐位坐标生成，SpaceDrive 解决了语言模型在处理连续数值量方面的根本限制。
--   **框架通用性**：该方法展示了与不同 VLM 架构（Qwen-VL、LLaVA）的兼容性，并证明适用于推理时增强功能，如思维链推理，表明其广泛适用性。
+- **通用空间表示**：引入统一的 3D 位置编码，在感知、推理和规划模块中始终如一地工作，代表了一项重要的架构创新。这种方法超越了特定任务的嵌入，迈向了更具通用性的空间智能。
+- **显式3D理解**：将空间编码与视觉token进行加性整合，在语义内容和 3D 位置之间创建了显式关联，从而实现了更准确的场景理解和推理。
+- **回归坐标数值本质**：通过用基于回归的专用解码取代逐位坐标生成，SpaceDrive 解决了语言模型在处理连续数值量方面的根本限制。
+- **框架通用性**：该方法展示了与不同 VLM 架构（Qwen-VL、LLaVA）的兼容性，并证明适用于推理时增强功能，如思维链推理，表明其广泛适用性。
 
 综上，SpaceDrive 提供了一个严谨的范式转换：**从“语言建模几何”转向“显式几何编码”**。其核心贡献在于证实了在VLM中，通过**统一的、模态/任务无关的3D位置编码**，可以有效连接感知的视觉空间与规划的物理空间。这种方法不仅解决了VLM在大规模空间推理任务中的幻觉和精度问题，还保留了VLM在长尾场景理解上的通用优势。SpaceDrive 代表了使 VLM 能够通过精确的空间理解有效与物理世界交互的重要一步，为更可靠、更有能力的 AI 智能体提供了发展方向。

@@ -97,9 +97,9 @@ From the perspective of the Manifold Hypothesis, existing models (like GPT-4 or 
 
 AGI requires a **unified, omni-modal Hyper-Manifold**, which necessitates:
 
--   Constructing a **low-level, modality-agnostic latent space**. In this space, seeing an image of an "apple," hearing the sound "Apple," or perceiving Newton's law of gravity all map to the **essential geometric structure** of the same physical entity.
+- Constructing a **low-level, modality-agnostic latent space**. In this space, seeing an image of an "apple," hearing the sound "Apple," or perceiving Newton's law of gravity all map to the **essential geometric structure** of the same physical entity.
 
--   Incorporating not just correlations, but **Time Arrows** and **Causal Graph** structures. This implies paths on the manifold are **directed**. On the manifold, A→B might be a feasible trajectory, while B→A is prohibited by manifold boundaries (e.g., physical laws).
+- Incorporating not just correlations, but **Time Arrows** and **Causal Graph** structures. This implies paths on the manifold are **directed**. On the manifold, A→B might be a feasible trajectory, while B→A is prohibited by manifold boundaries (e.g., physical laws).
 
 ### **2. Core AGI Capability: Reasoning and Leaping on the Manifold**
 
@@ -111,23 +111,23 @@ The fundamental barrier to AGI is data sparsity. Compared to the infinite possib
 
 Imagine three black dots on a white paper, roughly forming an arc. The task is: "Draw the true curve where these three dots reside." Without prior knowledge, the model faces **infinite possibilities**:
 
--   **Possibility A (Smooth):** A smooth parabola.
+- **Possibility A (Smooth):** A smooth parabola.
 
--   **Possibility B (Oscillating):** A violently oscillating polyline passing through the dots at inflection points.
+- **Possibility B (Oscillating):** A violently oscillating polyline passing through the dots at inflection points.
 
--   **Possibility C (Complex):** The outline of a sketch "cat," where the dots are the ears and tail.
+- **Possibility C (Complex):** The outline of a sketch "cat," where the dots are the ears and tail.
 
--   **Possibility D (Discontinuous):** Three independent, unrelated islands, not a continuous curve.
+- **Possibility D (Discontinuous):** Three independent, unrelated islands, not a continuous curve.
 
 Without extra assumptions, there are infinite lines connecting these points. Relying solely on data points, **the true manifold is unknowable**.
 
 Humans solve this strategy via specific intuitions:
 
--   **Occam's Razor:** Preference for smoothness and simplicity. We assume the **world is simple, continuous, and gradual**. Unless evidence suggests violent oscillation, we default to smoothness. **In manifold learning**, this corresponds to regularization—forcing the model to find the simplest manifold.
+- **Occam's Razor:** Preference for smoothness and simplicity. We assume the **world is simple, continuous, and gradual**. Unless evidence suggests violent oscillation, we default to smoothness. **In manifold learning**, this corresponds to regularization—forcing the model to find the simplest manifold.
 
--   **Physical World Priors:** We guess physical meaning through the points. If these points represent "a ball thrown in the air," the likelihood of a parabola is maximized because gravity constrains the manifold shape via known physical equations ($$y=ax^2+bx+c$$). If they are "stock prices over three days," a jagged line is probable, as the financial manifold is fractal and non-smooth.
+- **Physical World Priors:** We guess physical meaning through the points. If these points represent "a ball thrown in the air," the likelihood of a parabola is maximized because gravity constrains the manifold shape via known physical equations ($$y=ax^2+bx+c$$). If they are "stock prices over three days," a jagged line is probable, as the financial manifold is fractal and non-smooth.
 
--   **Semantic Completion:** If the dots suggest a triangle with a line below, humans infer a face. This is not curve fitting, but **retrieving a manifold from memory**. The human brain stores thousands of compressed "object manifolds." Seeing the dots activates and projects the high-dimensional "face" manifold, which perfectly passes through the points.
+- **Semantic Completion:** If the dots suggest a triangle with a line below, humans infer a face. This is not curve fitting, but **retrieving a manifold from memory**. The human brain stores thousands of compressed "object manifolds." Seeing the dots activates and projects the high-dimensional "face" manifold, which perfectly passes through the points.
 
 Relying purely on data fitting, a model cannot determine the "true manifold" conforming to physical laws. Merely scaling data cannot fully cover the complex dynamics of high-dimensional space; extrapolation will inevitably fail. To reconstruct real-world manifolds under data scarcity, general AI cannot just be a "data fitter"—it must possess a **meta-knowledge base** akin to humans.
 
@@ -143,11 +143,11 @@ In the discussion above, whether priors, semantic logic, or optimization logic l
 
 Not all biases are beneficial; simple semantic biases are easily falsified by counterexamples. A plausible conjecture is that models leading to AGI require **Meta-Priors**—geometric and physical constraints regarding the universe's underlying laws:
 
--   **Physical Symmetry:** Hard-coding or soft-constraining translation, rotation, and time invariance into the architecture. This informs the model that however the manifold curls, it must obey conservation laws.
+- **Physical Symmetry:** Hard-coding or soft-constraining translation, rotation, and time invariance into the architecture. This informs the model that however the manifold curls, it must obey conservation laws.
 
--   **Causal Sparsity:** Assuming the generative graph behind the manifold is sparse. This forces the model to decouple variables, avoiding spurious fully-connected correlations.
+- **Causal Sparsity:** Assuming the generative graph behind the manifold is sparse. This forces the model to decouple variables, avoiding spurious fully-connected correlations.
 
--   **Algorithmic Minimalism:** Based on Occam's Razor, preferring the manifold structure with the lowest generative complexity (i.e., finding the shortest dynamic equation).
+- **Algorithmic Minimalism:** Based on Occam's Razor, preferring the manifold structure with the lowest generative complexity (i.e., finding the shortest dynamic equation).
 
 ## **V. Dynamic Correction: From Static Priors to Bayesian Manifold Evolution**
 

@@ -19,17 +19,17 @@ From the perspective of the Manifold Hypothesis, all classical architectures can
 
 The MLP treats the input space $$R^D$$ as a flat Euclidean space, utilizing hierarchical affine transformations and non-linear activation functions to indiscriminately fold, twist, and stretch the entire input space. According to the Universal Approximation Theorem, given sufficient neurons, an MLP can approximate any continuous function. Theoretically, this implies it can transform a manifold of any topological structure into a linearly separable form.
 
--   **The Worst Operator**: The MLP structure embeds almost no Inductive Bias. Its core assumption is "smoothness"—that similar inputs yield similar outputs. Mathematically, this requires the learned function to satisfy the Lipschitz continuity condition: $$∥f(x)-f(y)∥≤K∥x−y∥$$. However, in high-dimensional space $$R^D$$, without specific geometric priors, guaranteeing this smoothness requires a sample size $$N$$ that grows exponentially with dimension $$D$$. Furthermore, the metric based on Euclidean distance $$∥x−y∥_2$$ fails in high-dimensional space, as distances between all point pairs tend to converge. This **assumption of global spatial isotropy** ignores the complexity of high-dimensional manifold structures and is the root cause of its inefficiency. Consequently, massive use of MLPs often leads to suboptimal performance.
+- **The Worst Operator**: The MLP structure embeds almost no Inductive Bias. Its core assumption is "smoothness"—that similar inputs yield similar outputs. Mathematically, this requires the learned function to satisfy the Lipschitz continuity condition: $$∥f(x)-f(y)∥≤K∥x−y∥$$. However, in high-dimensional space $$R^D$$, without specific geometric priors, guaranteeing this smoothness requires a sample size $$N$$ that grows exponentially with dimension $$D$$. Furthermore, the metric based on Euclidean distance $$∥x−y∥_2$$ fails in high-dimensional space, as distances between all point pairs tend to converge. This **assumption of global spatial isotropy** ignores the complexity of high-dimensional manifold structures and is the root cause of its inefficiency. Consequently, massive use of MLPs often leads to suboptimal performance.
 
--   **The Best Operator**: Conversely, the near-absence of Inductive Bias means MLP has no requirements for input data distribution, possessing the capability to fold and project all manifolds. As a rigid transformation operator, MLP does not alter the data's topological structure. Therefore, in cross-modal feature fusion (direct alignment of embeddings) and most downstream heads (where the feature space is sufficiently flat), MLP becomes the optimal (and most universal) choice. This has led to minimalist approaches like LLaVA.
+- **The Best Operator**: Conversely, the near-absence of Inductive Bias means MLP has no requirements for input data distribution, possessing the capability to fold and project all manifolds. As a rigid transformation operator, MLP does not alter the data's topological structure. Therefore, in cross-modal feature fusion (direct alignment of embeddings) and most downstream heads (where the feature space is sufficiently flat), MLP becomes the optimal (and most universal) choice. This has led to minimalist approaches like LLaVA.
 
 ### **2. CNN: Introduction of Euclidean Group Symmetry**
 
 The success of CNNs stems from explicitly exploiting the **Geometric Priors** of natural image manifolds:
 
--   **Local Connectivity**: Assumes the manifold possesses local topological structure; pixel correlation decays with distance.
+- **Local Connectivity**: Assumes the manifold possesses local topological structure; pixel correlation decays with distance.
 
--   **Weight Sharing**: Assumes the geometry of the tangent space is uniform across the manifold. The manifold $$M$$ is invariant under the translation group $$SE(2)$$, i.e., $$f(T(x))=f(x)$$ (invariance) or $$f(T(x))=T′(f(x))$$ (equivariance).
+- **Weight Sharing**: Assumes the geometry of the tangent space is uniform across the manifold. The manifold $$M$$ is invariant under the translation group $$SE(2)$$, i.e., $$f(T(x))=f(x)$$ (invariance) or $$f(T(x))=T′(f(x))$$ (equivariance).
 
 As a spatially local operator, CNN explicitly hard-codes the **symmetry** of the manifold into the network structure. It performs "low-pass filtering" in the local neighborhood of the input manifold, attenuating high-frequency noise and unstable directions, thereby making the representation closer to the low-dimensional structure. This can be approximated as CNN performing multiple equidistant foldings and distortions on the entire manifold simultaneously.
 
@@ -87,9 +87,9 @@ Architecturally, LLMs (like GPT-4, LLaMA) differ little from the original Transf
 
 In deep learning, Loss essentially measures the distance between the manifold learned by the model and the true data manifold. The Scaling Law describes the power-law decrease of Loss with respect to compute $$C$$, parameters $$N$$, and data $$D$$: $$L(N) \propto N^{-\alpha}$$.
 
--   **Increasing Parameters $$N$$ (Reducing Bias):** The Scaling Law suggests that as $$N$$ increases, the model's ability to fit high-frequency curvature rises according to a power law. Small models can only learn the global skeleton of the manifold, i.e., the principal components. At this stage, Loss drops rapidly. As $$N$$ increases, the model begins to wrap around high-frequency regions with extreme curvature on the manifold—the rare, complex long-tail samples.
+- **Increasing Parameters $$N$$ (Reducing Bias):** The Scaling Law suggests that as $$N$$ increases, the model's ability to fit high-frequency curvature rises according to a power law. Small models can only learn the global skeleton of the manifold, i.e., the principal components. At this stage, Loss drops rapidly. As $$N$$ increases, the model begins to wrap around high-frequency regions with extreme curvature on the manifold—the rare, complex long-tail samples.
 
--   **Increasing Data $$D$$(Reducing Variance):** According to coverage number theory, covering a $$d$$-dimensional manifold with precision $$\epsilon$$ requires sample size$$M \propto (1/\epsilon)^d$$. The Scaling Law effectively reveals the decay rate of approximation error as sample density increases for a specific $$d$$. This explains why image generation (high $$d$$) is harder to scale than text classification (low $$d$$). The existence of the Scaling Law proves that deep networks are indeed performing manifold learning, not simple memorization. If it were memorization, the Loss curve would not exhibit this power-law distribution.
+- **Increasing Data $$D$$(Reducing Variance):** According to coverage number theory, covering a $$d$$-dimensional manifold with precision $$\epsilon$$ requires sample size$$M \propto (1/\epsilon)^d$$. The Scaling Law effectively reveals the decay rate of approximation error as sample density increases for a specific $$d$$. This explains why image generation (high $$d$$) is harder to scale than text classification (low $$d$$). The existence of the Scaling Law proves that deep networks are indeed performing manifold learning, not simple memorization. If it were memorization, the Loss curve would not exhibit this power-law distribution.
 
 From the Foundation Model perspective, the training of an LLM is the ultimate approximation of the language manifold.
 
@@ -97,11 +97,11 @@ From the Foundation Model perspective, the training of an LLM is the ultimate ap
 
 If we view data distribution as a manifold, learning is the process of establishing connectivity upon it.
 
--   **Small Models**: The model learns dispersed local neighborhoods on the manifold but fails to establish correct mappings between them. The model cannot perform multi-step reasoning because the inference path is broken.
+- **Small Models**: The model learns dispersed local neighborhoods on the manifold but fails to establish correct mappings between them. The model cannot perform multi-step reasoning because the inference path is broken.
 
--   **Critical Point**: When parameter count $$N$$ and training data $$D$$ exceed a certain threshold, the model's coverage density on the manifold reaches the percolation threshold. Dispersed local knowledge suddenly connects into a globally consistent graph.
+- **Critical Point**: When parameter count $$N$$ and training data $$D$$ exceed a certain threshold, the model's coverage density on the manifold reaches the percolation threshold. Dispersed local knowledge suddenly connects into a globally consistent graph.
 
--   **Emergence**: At this point, the model can not only interpolate but also perform transitive composition on the manifold. For instance, knowing A→B and B→C leads to the emergence of A→C capability. Macroscopically, this manifests as a sudden jump in performance (similar to phase transitions in complex physical systems).
+- **Emergence**: At this point, the model can not only interpolate but also perform transitive composition on the manifold. For instance, knowing A→B and B→C leads to the emergence of A→C capability. Macroscopically, this manifests as a sudden jump in performance (similar to phase transitions in complex physical systems).
 
 Emergence is often accompanied by geometric reconstruction (linearization and disentanglement) of the representation space. Before the phase transition, different concepts are entangled and twisted on the manifold, inseparable by linear layers. After the transition, the model learns to unfold the curved manifold into a high-dimensional Euclidean space, making complex semantic relations linearly separable. Acquiring this unfolding capability often requires achieving certain depth and width—precisely the moment emergence occurs.
 
@@ -129,11 +129,11 @@ The essence of MoE is acknowledging that using a single, globally shared Dense M
 
 Traditional Attention builds a graph and performs diffusion/kernel smoothing on the token manifold. If token representations lie on a low-dimensional manifold, the most effective information often comes from manifold neighbors or a few cross-region shortcuts. Fully connected attention introduces massive non-manifold noise connections (long-distance, semantically unrelated token interactions); thus, effective mixing does not require full connectivity. The core of Sparse Attention is approximating the full connection in traditional Attention as a sparse graph:
 
--   **Top-k / kNN Sparsification**: Retain only the $$k$$ edges with maximum similarity for each query (manifold neighbors).
+- **Top-k / kNN Sparsification**: Retain only the $$k$$ edges with maximum similarity for each query (manifold neighbors).
 
--   **Block Sparse / Local Window**: Prior assumption that neighbors are also local in sequence position (suitable for local dependencies).
+- **Block Sparse / Local Window**: Prior assumption that neighbors are also local in sequence position (suitable for local dependencies).
 
--   **Budget Adaptive Sparsity**: Different sparsity levels for different tokens and different stages (prefill vs decode).
+- **Budget Adaptive Sparsity**: Different sparsity levels for different tokens and different stages (prefill vs decode).
 
 ### **3. Gated Attention**
 
