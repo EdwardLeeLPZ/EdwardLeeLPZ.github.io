@@ -30,12 +30,7 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "books-the-godfather",
-          title: 'The Godfather',
-          description: "",
-          section: "Books",handler: () => {
-              window.location.href = "/books/the_godfather.html";
-            },},{id: "news-powerbev-our-paper-on-camera-based-end-to-end-instance-prediction-in-bird-s-eye-view-has-been-accepted-by-ijcai-2023",
+        },{id: "news-powerbev-our-paper-on-camera-based-end-to-end-instance-prediction-in-bird-s-eye-view-has-been-accepted-by-ijcai-2023",
           title: 'PowerBEV, our paper on camera-based end-to-end instance prediction in bird’s-eye view, has been...',
           description: "",
           section: "News",},{id: "news-our-seflow-a-self-supervised-scene-flow-method-in-autonomous-driving-paper-is-accepted-by-eccv-2024-the-1st-ranking-on-argoverse-2-self-supervised-scene-flow-leaderboard",
@@ -47,52 +42,7 @@ ninja.data = [{
           section: "News",},{id: "news-our-spacedrive-infusing-spatial-awareness-into-vlm-based-autonomous-driving-paper-is-accepted-by-cvpr-2026-the-1st-ranking-on-nuscenes-benchmark-and-2nd-best-close-loop-performance-on-bench2drive-leaderboard",
           title: 'Our SpaceDrive: Infusing Spatial Awareness into VLM-based Autonomous Driving paper is accepted by...',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project.html";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/2_project.html";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project.html";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project.html";
-            },},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/5_project.html";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/6_project.html";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project.html";
-            },},{id: "projects-project-8",
-          title: 'project 8',
-          description: "an other project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/8_project.html";
-            },},{id: "projects-project-9",
-          title: 'project 9',
-          description: "another project with an image 🎉",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/9_project.html";
-            },},{
+          section: "News",},{
       id: 'light-theme',
       title: 'Change theme to light',
       description: 'Change the theme of the site to Light',
