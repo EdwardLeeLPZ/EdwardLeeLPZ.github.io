@@ -377,6 +377,12 @@ body.home-page {
   border-top: 1px solid #2a241f;
 }
 
+/* Highlights render as one single-entry list per bib key (custom order);
+   only the first list keeps its top divider, entries stay separated by li borders. */
+.home-card--papers .publications ol.bibliography + ol.bibliography {
+  border-top: 0;
+}
+
 .home-card--papers .publications ol.bibliography li {
   padding: 1.15rem 0;
   border-top: 0;

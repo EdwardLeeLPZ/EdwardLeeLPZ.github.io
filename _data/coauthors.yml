@@ -12,11 +12,11 @@
 
 "chen":
   - firstname: ["Xieyuanli"]
-    url: https://xieyuanli-chen.com
+    url: https://chen-xieyuanli.github.io/
 
 "gall":
   - firstname: ["Juergen", 'J{"u}rgen']
-    url: http://gall.cv-uni-bonn.de
+    url: https://pages.iai.uni-bonn.de/gall_juergen/
 
 "zhang":
   - firstname: ["Zhenghao"]
@@ -27,6 +27,9 @@
 
   - firstname: ["Boya"]
     url: https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/boya-zhang/
+
+  - firstname: ["Lina"]
+    url: https://github.com/LinaZhangUCLA
 
 "yang":
   - firstname: ["Yi"]
@@ -89,3 +92,115 @@
 "geiger":
   - firstname: ["Andreas"]
     url: https://www.cvlibs.net/
+
+"inak":
+  - firstname: ["Onat"]
+    url: https://www.linkedin.com/in/onat-inak-a61a49140/
+
+"braun":
+  - firstname: ["Markus"]
+    url: https://scholar.google.de/citations?user=CO8Upl0AAAAJ&hl=en
+
+"deng":
+  - firstname: ["Tianchen"]
+    url: https://scholar.google.com/citations?user=wSwpGSIAAAAJ
+
+"lou":
+  - firstname: ["Jun"]
+    url: https://www.linkedin.com/in/jun-lou/
+
+"canevaro":
+  - firstname: ["Alessandro"]
+    url: https://alessandro-canevaro.github.io/
+
+"schmidt":
+  - firstname: ["Julian"]
+    url: https://www.linkedin.com/in/schmidtjulian/
+
+"kaufeld":
+  - firstname: ["Marc"]
+    url: https://www.mos.ed.tum.de/en/avs/team/marc-kaufeld/
+
+"betz":
+  - firstname: ["Johannes"]
+    url: https://www.mos.ed.tum.de/en/avs/team/prof-dr-ing-johannes-betz/
+
+"stork":
+  - firstname: ["Wilhelm"]
+    url: https://www.itiv.kit.edu/english/21_180.php
+
+"martius":
+  - firstname: ["Georg"]
+    url: https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/distributed-intelligence/team/prof-dr-georg-martius/
+
+"monsoor":
+  - firstname: ["Tonmoy"]
+    url: https://www.linkedin.com/in/tonmoy-monsoor-5730a82b/
+
+"sinha":
+  - firstname: ["Prateik"]
+    url: https://prateik-11.github.io/
+
+"dai":
+  - firstname: ["Siyuan"]
+    url: https://scholar.google.com/citations?user=Dp_hXF4AAAAJ&hl=en
+
+"pasqua":
+  - firstname: ["Jessica Nichole", "Jessica"]
+    url: https://profiles.ucla.edu/jessica.pasqua
+
+"mccrimmon":
+  - firstname: ["Colin M", "Colin"]
+    url: https://www.uclahealth.org/providers/colin-mccrimmon
+
+"miranda":
+  - firstname: ["Hailey Marie"]
+    url: https://www.linkedin.com/in/haileymiranda/
+
+"wu":
+  - firstname: ["Xiangting"]
+    url: https://www.linkedin.com/in/xiangting-wu-6a38a6223/
+
+"xu":
+  - firstname: ["Tengyou"]
+    url: https://www.linkedin.com/in/tengyou-xu-b320aa370
+
+"tian":
+  - firstname: ["Jiaye"]
+    url: https://www.linkedin.com/in/jiaye-tian/
+
+"ma":
+  - firstname: ["Detao"]
+    url: https://orcid.org/0009-0005-8782-0777
+
+"kong":
+  - firstname: ["Lingye"]
+    url: https://lingyekong.com/
+
+"lyu":
+  - firstname: ["Junnan"]
+    url: https://www.linkedin.com/in/junnan-lyu-873a99263
+
+"li":
+  - firstname: ["Jungang"]
+    url: https://github.com/LJungang
+
+"zan":
+  - firstname: ["Yan"]
+    url: https://yanzan.netlify.app/
+
+"huang":
+  - firstname: ["Junhua"]
+    url: https://harry-junhua-huang.github.io/
+
+"mazumder":
+  - firstname: ["Rajarshi"]
+    url: https://www.uclahealth.org/providers/rajarshi-mazumder
+
+"roychowdhury":
+  - firstname: ["Vwani"]
+    url: http://www.vwaniroychowdhury.com/
+
+"lorasdagi":
+  - firstname: ["Mehmet Efe"]
+    url: https://lorasdagi.com/

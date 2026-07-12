@@ -1,3 +1,9 @@
 <div class="publications">
-  {% bibliography --group_by none --query @*[selected=true]* %}
+  {% if page.selected_papers_order %}
+    {% for key in page.selected_papers_order %}
+      {% bibliography --group_by none --query @*[key={{key}}]* %}
+    {% endfor %}
+  {% else %}
+    {% bibliography --group_by none --query @*[selected=true]* %}
+  {% endif %}
 </div>

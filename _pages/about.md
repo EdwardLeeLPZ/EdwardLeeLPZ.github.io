@@ -25,6 +25,14 @@ profile:
   address: >
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers_order: # custom display order of the homepage publication highlights (bib keys)
+  - li2026spacedrive
+  - li2025ago
+  - zhang2024seflow
+  - li2023powerbev
+  - yu2026g2dp
+  - canevaro2026shift
+  - lai2026famhri
 social: true # includes social icons at the bottom of the page
 
 announcements:
@@ -40,7 +48,7 @@ latest_posts:
 
 My research focuses on building autonomous systems that can perceive, model, and reliably act in the 3D physical world, spanning 3D/4D dynamics scene understanding, open world modeling, spatial intelligence and embodied systems.
 
-I am a PhD researcher at the [University of Tübingen](https://uni-tuebingen.de/en) and [Mercedes-Benz AG R&D](https://www.mercedes-benz.com/en/), advised by [Prof. Andreas Geiger](https://www.cvlibs.net/) and [Prof. Andreas Zell](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/). My work bridges academic research and industrial-scale engineering, with publications at CVPR, ICCV, ECCV, and IJCAI as first or core author across four consecutive years.
+I am a PhD researcher at the [University of Tübingen](https://uni-tuebingen.de/en) and [Mercedes-Benz AG R&D](https://www.mercedes-benz.com/en/), advised by [Prof. Andreas Geiger](https://www.cvlibs.net/) and [Prof. Andreas Zell](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/kognitive-systeme/the-chair/staff/prof-dr-andreas-zell/). My work bridges academic research and industrial-scale engineering, with publications at CVPR, ICCV, ECCV, ICML, IJCAI, and IROS as first or core author.
 
 > _Getting AI into the physical world is pretty cool I guess._
 > {: .about-slogan }
