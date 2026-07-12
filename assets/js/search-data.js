@@ -42,6 +42,9 @@ ninja.data = [{
           section: "News",},{id: "news-our-spacedrive-infusing-spatial-awareness-into-vlm-based-autonomous-driving-paper-is-accepted-by-cvpr-2026-the-1st-ranking-on-nuscenes-benchmark-and-2nd-best-close-loop-performance-on-bench2drive-leaderboard",
           title: 'Our SpaceDrive: Infusing Spatial Awareness into VLM-based Autonomous Driving paper is accepted by...',
           description: "",
+          section: "News",},{id: "news-two-papers-g2dp-diffusion-planning-with-spatio-temporal-grid-guidance-and-shift-amp-amp-drift-a-zero-shot-benchmark-for-generalizable-and-robust-autonomous-driving-motion-planning-are-accepted-by-iros-2026",
+          title: 'Two papers, G2DP: Diffusion Planning with Spatio-Temporal Grid Guidance and Shift &amp;amp;amp; Drift:...',
+          description: "",
           section: "News",},{
       id: 'light-theme',
       title: 'Change theme to light',
