@@ -32,6 +32,7 @@ selected_papers_order: # custom display order of the homepage publication highli
   - li2023powerbev
   - yu2026g2dp
   - canevaro2026shift
+  - ding2026tqd
   - lai2026famhri
 social: true # includes social icons at the bottom of the page
 

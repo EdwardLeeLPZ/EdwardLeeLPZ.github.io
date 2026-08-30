@@ -18,12 +18,12 @@
       year: 2023 - Present
       description:
         - "Advisors: Prof. Andreas Geiger and Prof. Andreas Zell"
-        - "Focus: open-world modeling, spatial foundation models, and physical grounding for autonomous agents"
+        - "Research: multimodal learning, VLM / VLA, world models, embodied AI, robotics, and autonomous driving"
     - title: M.Sc. in Electromobility
       institution: University of Stuttgart, Germany
       year: 2020 - 2022
       description:
-        - "Grade: 1.6 (German scale, 1.0 best)"
+        - "Grade: 1.6 (German scale, 1.0 best; approx. 3.7 / 4.0 US equivalent)"
         - "Thesis: End-to-End Agent Perception and Occupancy-Based Motion Prediction in Bird's-Eye View"
     - title: B.Eng. in Vehicle Engineering
       institution: Tongji University, Shanghai, China
@@ -35,23 +35,23 @@
 - title: Work Experience
   type: time_table
   contents:
-    - title: Industrial Doctoral Researcher
+    - title: Industrial Ph.D. Researcher
       institution: Mercedes-Benz Group AG, Stuttgart, Germany
       department: Scene Understanding Group, R&D
       year: 2023 - Present
       description:
-        - "Research on multimodal and embodied AI for autonomous systems, spanning VLM/VLA, open-world 3D occupancy prediction, spatial reasoning, self-supervised scene flow, and robotics / HRI collaborations."
+        - "Research on foundation models for autonomous systems, spanning VLM / VLA for autonomous driving, open-world 3D occupancy prediction, spatial and world-model-oriented reasoning, diffusion-based motion planning, self-supervised scene flow, and robotics / HRI collaborations."
         - "First-author publications: SpaceDrive (CVPR 2026), AGO (ICCV 2025), PowerBEV (IJCAI 2023)."
-        - "Built large-scale data and evaluation pipelines for data acquisition, cleaning, temporal consistency, and automated dense 3D pseudo-label generation."
-        - "Scaled training and evaluation across GPU clusters and cloud using PyTorch, CUDA, DDP, Docker, Kubernetes, Flyte, Azure, and GCP."
+        - "Built large-scale data-engine and evaluation pipelines for data acquisition, cleaning, temporal consistency, scene / instance retrieval, and automated dense 3D pseudo-label generation."
+        - "Scaled training and evaluation across local GPU clusters and cloud using PyTorch, CUDA, DDP, Docker, Kubernetes, Flyte, Azure, and GCP."
         - "Mentored interns and master thesis students; collaborated across research and engineering teams on open-source releases and reproducible evaluation."
     - title: Master Student
       institution: Mercedes-Benz Group AG, Stuttgart, Germany
       department: Scene Understanding Group, R&D
       year: 2022
       description:
-        - "Built a camera-based end-to-end BEV perception and future prediction model; achieved 39.3% dynamic IoU on nuScenes."
-        - "Designed a multi-stage temporal GCN for Waymo Occupancy and Flow Prediction Challenge; ranked 4th on the leaderboard."
+        - "Built a camera-based end-to-end BEV perception and future prediction model with Lift-Splat-Shoot-style view transformation, temporal prediction, and multi-task decoding; achieved 39.3% dynamic IoU on nuScenes."
+        - "Designed a multi-stage temporal GCN for the Waymo Occupancy and Flow Prediction Challenge; achieved 74.2% Flow-Grounded Occupancy AUC and ranked 4th on the leaderboard."
     - title: Research Intern
       institution: Mercedes-Benz Group AG, Stuttgart, Germany
       department: Scene Understanding Group, R&D
@@ -88,19 +88,23 @@
     - category: Research Areas
       icon: fas fa-brain
       items:
-        - Multimodal Learning
-        - VLM / VLA
+        - Foundation Models & VLM / VLA for Driving
         - World Models
-        - Embodied AI
+        - Multimodal Learning
         - 3D Vision
         - Open-World Perception
         - BEV / Occupancy
         - Scene Flow
-        - Spatial Foundation Models
+        - Auto-Labeling & Data Engines
+        - Spatial Intelligence
+        - Embodied AI
+        - Multi-View Geometry
+        - SLAM
         - HRI
 
 - title: Service
   type: list
   contents:
     - 'Organizer: <a href="https://drivex-workshop.github.io/cvpr2026/">4th DriveX Workshop</a>, in conjunction with CVPR 2026'
-    - "Reviewer: CVPR 2025/2026, ICCV 2025, ICRA 2026, AAAI 2026, IROS 2025, IEEE T-ITS 2025"
+    - 'Organizer: <a href="https://drivex-workshop.github.io/eccv2026/">6th DriveX Workshop</a>, in conjunction with ECCV 2026'
+    - "Reviewer: CVPR 2025/2026, ICCV 2025, ECCV 2026, ICRA 2026, AAAI 2026/2027, IROS 2025/2026, IEEE T-ITS 2025"
