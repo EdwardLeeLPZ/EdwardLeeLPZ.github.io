@@ -45,6 +45,9 @@ ninja.data = [{
           section: "News",},{id: "news-two-papers-g2dp-diffusion-planning-with-spatio-temporal-grid-guidance-and-shift-amp-amp-drift-a-zero-shot-benchmark-for-generalizable-and-robust-autonomous-driving-motion-planning-are-accepted-by-iros-2026",
           title: 'Two papers, G2DP: Diffusion Planning with Spatio-Temporal Grid Guidance and Shift &amp;amp;amp; Drift:...',
           description: "",
+          section: "News",},{id: "news-our-tqd-track-temporal-query-denoising-for-3d-multi-object-tracking-paper-is-accepted-by-bmvc-2026",
+          title: 'Our TQD-Track: Temporal Query Denoising for 3D Multi-Object Tracking paper is accepted by...',
+          description: "",
           section: "News",},{
       id: 'light-theme',
       title: 'Change theme to light',
