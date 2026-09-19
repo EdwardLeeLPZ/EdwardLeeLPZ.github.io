@@ -154,6 +154,7 @@ exclude:
   - package-lock.json
   - _pages/about_einstein.md
   - README.md
+  - docs
   - vendor
 keep_files:
   - CNAME
