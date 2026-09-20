@@ -1,0 +1,43 @@
+{% assign project = include.project %}
+{% if project.redirect %}
+  {% assign entry_url = project.redirect %}
+{% else %}
+  {% assign entry_url = project.url | relative_url %}
+{% endif %}
+
+<a class="project-entry{% unless project.img %} project-entry--no-thumb{% endunless %}" href="{{ entry_url }}">
+  {% if project.img %}
+    <div class="project-entry__thumb">
+      <img src="{{ project.img | relative_url }}" alt="{{ project.title }}" loading="lazy">
+    </div>
+  {% endif %}
+
+  <div class="project-entry__body">
+    {% if project.category or project.year %}
+      <div class="project-entry__kicker">
+        {% if project.category %}
+          <span class="project-entry__category">{{ project.category }}</span>
+        {% endif %}
+        {% if project.year %}
+          <span class="project-entry__year">{{ project.year }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <h2 class="project-entry__title">{{ project.title }}</h2>
+
+    {% if project.description %}
+      <p class="project-entry__description">{{ project.description }}</p>
+    {% endif %}
+
+    {% if project.org or project.role %}
+      <p class="project-entry__byline">
+        {% if project.org %}{{ project.org }}{% endif %}
+        {% if project.org and project.role -%}
+          <span class="project-entry__dot">&middot;</span>
+        {%- endif %}
+        {% if project.role %}{{ project.role }}{% endif %}
+      </p>
+    {% endif %}
+  </div>
+</a>

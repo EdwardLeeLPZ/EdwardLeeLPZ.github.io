@@ -1,0 +1,68 @@
+---
+layout: default
+---
+{% if page._styles %}
+  <!-- Page style -->
+  <style type="text/css">
+    {{ page._styles }}
+  </style>
+{% endif %}
+
+<div class="post project">
+  <header class="post-header project-header">
+    {% if page.category %}
+      <p class="project-eyebrow">{{ page.category }}</p>
+    {% endif %}
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="post-description">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  {% if page.year or page.org or page.role or page.stack or page.links %}
+    <dl class="project-meta">
+      {% if page.year %}
+        <dt>Year</dt>
+        <dd>{{ page.year }}</dd>
+      {% endif %}
+      {% if page.org %}
+        <dt>Org</dt>
+        <dd>{{ page.org }}</dd>
+      {% endif %}
+      {% if page.role %}
+        <dt>Role</dt>
+        <dd>{{ page.role }}</dd>
+      {% endif %}
+      {% if page.stack %}
+        <dt>Stack</dt>
+        <dd>{{ page.stack | join: ' &middot; ' }}</dd>
+      {% endif %}
+      {% if page.links %}
+        <dt>Links</dt>
+        <dd>
+          {% for link in page.links %}
+            <a href="{{ link.url }}">{{ link.name }}</a>
+            {% unless forloop.last -%}
+              <span class="project-meta__dot">&middot;</span>
+            {%- endunless %}
+          {% endfor %}
+        </dd>
+      {% endif %}
+    </dl>
+  {% endif %}
+
+  <article class="project-body">
+    {{ content }}
+  </article>
+
+  {% if page.related_publications %}
+    <h2>References</h2>
+    <div class="publications">
+      {% bibliography --cited_in_order %}
+    </div>
+  {% endif %}
+
+  {% if site.giscus and page.giscus_comments %}
+    {% include giscus.liquid %}
+  {% endif %}
+</div>

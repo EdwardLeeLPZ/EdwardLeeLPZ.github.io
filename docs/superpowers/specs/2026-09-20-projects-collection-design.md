@@ -52,7 +52,11 @@
 - **Blogs** —— 论文解读与技术博客。
 - **Projects** —— 工程型 / 系统型 demo、原型、工具链。
 
-论文项目（SpaceDrive、AGO、PowerBEV 等）不进入 Projects。
+论文本身不进入 Projects。SpaceDrive、AGO、PowerBEV 作为论文，归 Publications；其解读归 Blogs。
+
+需要区分的一种情况：**同一研究方向的工程化产物属于 Projects**。例如 `papers.bib` 中的 `li2025ago`（ICCV 2025 的 AGO 方法论文）归 Publications，而基于该方向在公司内部落地的自动标注流水线是可规模化的工程系统，归 Projects。两者不是同一个条目。为避免读者混淆，Projects 中的条目名应体现工程属性，不与论文同名。
+
+语言：Projects 只做英文。数据模型中不设语言字段，也不做 `_posts/` 那样的中英双目录结构。
 
 ## 3. 数据模型
 
@@ -88,21 +92,21 @@ redirect: # 可选；填写后列表项直接跳转外链，不生成详情页�
 
 ## 4. 文件改动清单
 
-| 文件                                | 动作                                                                       |
-| ----------------------------------- | -------------------------------------------------------------------------- |
-| `_config.yml`                       | 新增 `collections.projects: {output: true}`；在 `exclude` 中加入 `docs`    |
-| `_pages/projects.md`                | 新建。`layout: page`、`permalink: /projects/`、`nav: true`、`nav_order: 3` |
-| `_pages/cv.md`                      | `nav_order` 由 `3` 改为 `4`                                                |
-| `_layouts/project.liquid`           | 新建。详情页 layout                                                        |
-| `_includes/project_entry.liquid`    | 新建。列表页单条目                                                         |
-| `_sass/_projects.scss`              | 新建                                                                       |
-| `assets/css/main.scss`              | `@import` 列表中在 `"pages"` 之后加入 `"projects"`                         |
-| `_sass/_base.scss`                  | 删除第 726–763 行的死 `.projects` 块                                       |
-| `assets/img/project_images/<slug>/` | 新建资源目录，组织方式对齐现有 `assets/img/blog_images/<slug>/`            |
+| 文件                                | 动作                                                                                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `_config.yml`                       | 新增 `collections.projects`（`output: true` 与 `permalink: /:collection/:path/`）；在 `exclude` 中加入 `docs` 与 `tools` |
+| `_pages/projects.md`                | 新建。`layout: page`、`permalink: /projects/`、`nav: true`、`nav_order: 3`                                               |
+| `_pages/cv.md`                      | `nav_order` 由 `3` 改为 `4`                                                                                              |
+| `_layouts/project.liquid`           | 新建。详情页 layout                                                                                                      |
+| `_includes/project_entry.liquid`    | 新建。列表页单条目                                                                                                       |
+| `_sass/_projects.scss`              | 新建                                                                                                                     |
+| `assets/css/main.scss`              | `@import` 列表中在 `"pages"` 之后加入 `"projects"`                                                                       |
+| `_sass/_base.scss`                  | 删除第 726–763 行的死 `.projects` 块                                                                                     |
+| `assets/img/project_images/<slug>/` | 新建资源目录，组织方式对齐现有 `assets/img/blog_images/<slug>/`                                                          |
 
 `docs` 必须加入 `_config.yml` 的 `exclude`：Jekyll 默认会构建所有非 `_` / `.` 开头的顶层目录，否则本设计文档会被发布到 `https://edwardleelpz.github.io/docs/` 下。
 
-collection 输出 URL 使用 Jekyll 默认的 `/:collection/:path/`，即 `/projects/<slug>/`，无需显式配置 permalink。
+collection 输出 URL 为 `/projects/<slug>/`，**需要在 collection 上显式配置 `permalink: /:collection/:path/`**。原先认为可依赖 Jekyll 默认值，实测不成立：`_config.yml:85` 的全局 `permalink:` 为空值，会使本 collection 输出 `/projects/<slug>.html`。该全局设置服务于博客文章，不作改动。
 
 ## 5. 页面排版
 
@@ -159,17 +163,53 @@ layout: default
 
 ## 6. 媒体与仓库体积策略
 
-仓库当前未启用 Git LFS，已有 3 个 3MB 以上的 PDF（`assets/pdf/Poster_*.pdf`）与一张 1.6MB 的 JPG。策略：
+仓库当前未启用 Git LFS，`.git` 已达约 322 MB，`assets/` 约 120 MB。因此新素材一律按下列规格入库。
 
-- 图片、短 GIF、webm：单文件不超过 5MB，直接放入 `assets/img/project_images/<slug>/`。
-- 完整演示视频：优先使用外链 iframe（`_includes/video.liquid` 已支持 mp4/webm/ogg 本地文件与 iframe 外链两种模式），或压制为 720p webm 后入库。
-- GitHub 单文件硬上限 100MB；仓库整体超过 1GB 会触发告警。
+**图片一律使用 WebP，不使用 PNG。** 正文栏宽为 `--site-content-width: 1080px`，因此图片宽度上限取 1860px（约 2x）即可，更大无收益。质量档按内容类型分流，这是实测结论而非经验判断：
 
-具体取舍待作者提供实际素材后按体积确定。
+| 内容类型                         | 命令                                                                   | 实测效果                                    |
+| -------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------- |
+| 渲染截图、可视化、照片           | `convert src.png -resize '1860x>' -quality 85 out.webp`                | 相对原 PNG 省 95–99%                        |
+| 烧有小号文字标签的面板、表格类图 | `convert src.png -resize '1860x>' -define webp:lossless=true out.webp` | 零振铃伪影，且对纯色为主的图往往比 q85 更小 |
 
-## 7. 交互式 demo 的预留
+实测样本（本仓库现有图片）：`spacedrive_architecture.png` 1392×768，8.77 MB → 0.11 MB；`spacedrive_teaser.png` 2953×987，10.21 MB → 0.16 MB；`closeloop_eval.png` 文字密集，q85 为 0.18 MB 而无损仅 0.10 MB。
 
-`_layouts/project.liquid` 在正文之后预留一个 `{% if page.interactive %}` 分支的位置，**本轮不写任何实现**。等到确有交互式 demo 需求时，再决定采用 iframe 嵌入外部页面，还是在页内挂载 `assets/js` 依赖并在 `_includes/scripts.liquid` 中引入。提前实现只会产生死代码。
+WebP 已端到端验证：Jekyll 正常输出到构建产物，HTTP 返回 `image/webp`；`_includes/figure.liquid` 的 `<img src>` 直接透传 `path`，因 `imagemagick.enabled: false`，其 `<picture><source>` 分支整块跳过，不受影响。
+
+其余规则：
+
+- 文件名不得以 `_` 或 `.` 开头，Jekyll 会静默忽略这类文件且不报错。
+- 视频用 mp4（h.264），由 `_includes/video.liquid` 渲染，参数 `autoplay` + `muted` + `loop` + `controls`；封面从首帧抽取后转 WebP，控制在 150 KB 以内。不使用 GIF，同内容下 mp4 严格优于 GIF。
+- 单文件硬上限 5 MB。超长演示视频改用外链，`video.liquid` 对非 mp4/webm/ogg 路径自动走 iframe。
+- GitHub 单文件硬上限 100 MB，仓库整体超过 1 GB 触发告警。
+
+## 7. 交互能力
+
+本节在实现阶段被推翻重写。原先判断"交互式能力需要另行开发，提前做只会产生死代码"，该判断基于未核实 `_includes/scripts.liquid` 的错误前提。
+
+实际情况：`_layouts/default.liquid` 会 include `_includes/scripts.liquid`，而其中大量能力由 **page front matter 开关**驱动。`_layouts/project.liquid` 继承 `default`，因此以下能力对 `_projects/*.md` 开箱可用，无需任何新代码：
+
+| 能力               | front matter 开关                                        | 版本 / 依赖                 |
+| ------------------ | -------------------------------------------------------- | --------------------------- |
+| 图片对比滑块       | `images: {compare: true}`                                | img-comparison-slider 8.0.6 |
+| 图片轮播           | `images: {slider: true}`                                 | swiper                      |
+| 灯箱               | `images: {photoswipe/lightbox2/spotlight/venobox: true}` | 四选一                      |
+| Chart.js 图表      | `chart: {chartjs: true}`                                 | 4.4.1                       |
+| ECharts 图表       | `chart: {echarts: true}`                                 | 5.5.0，跟随明暗主题         |
+| Plotly / Vega-Lite | `chart: {plotly: true}` / `{vega_lite: true}`            |                             |
+| Mermaid 流程图     | `mermaid: {enabled: true, zoomable: true}`               | zoomable 追加 d3            |
+| typograms          | `typograms: true`                                        |                             |
+| 美化表格           | `pretty_table: true`                                     | 与 `code_diff` 互斥         |
+| 代码 diff          | `code_diff: true`                                        | diff2html                   |
+| 侧边目录           | `toc: {sidebar: left}`                                   |                             |
+| 图片点击放大       | 全局已开 `enable_medium_zoom`                            | figure 加 `zoomable=true`   |
+| 数学公式           | 全局已开 `enable_math`                                   | MathJax                     |
+
+图表数据写在 Markdown 的围栏代码块内（渲染脚本扫描 `pre > code.language-echarts` / `.language-chartjs` 并 `JSON.parse`），不使用独立数据文件。
+
+可折叠深读由 `_plugins/details.rb` 提供的 `{% details 标题 %}...{% enddetails %}` 实现，渲染为原生 `<details>`。
+
+仍需自定义 CSS、属于范围扩大的版面元素：hero 大图区、指标卡 / KPI 数字行、图文交替布局、时间线。本轮不做，需要时单独评估。
 
 ## 8. 验证方式
 
@@ -177,8 +217,8 @@ layout: default
 
 ```bash
 npx prettier . --check
-bundle check
-bundle exec jekyll build --config _config.yml --disable-disk-cache
+tools/jekyll-docker.sh check
+tools/jekyll-docker.sh build
 ```
 
 人工核对项：
@@ -190,7 +230,7 @@ bundle exec jekyll build --config _config.yml --disable-disk-cache
 - 暗色与亮色两种主题下排版均不破。
 - 构建产物 `_site/` 中不包含 `docs/` 目录。
 
-风险说明：本地 Ruby 环境是否可用尚未验证（未执行过 `bundle check`）。若实现阶段发现无法构建，将明确说明哪些验证跑不了、风险是什么。
+构建环境已在设计阶段打通并实测通过，见 `docs/2026-09-20-local-build-environment.md`。本机系统 Ruby 为 3.0.2，装不上本仓库依赖，因此本地构建统一走 `tools/jekyll-docker.sh`，容器内 Ruby 版本与 `.github/workflows/deploy.yml` 所钉的 3.3.5 一致。
 
 ## 9. 本轮明确不做的事
 

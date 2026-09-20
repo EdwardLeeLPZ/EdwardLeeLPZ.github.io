@@ -1,0 +1,224 @@
+/*******************************************************************************
+ * Projects collection: flat entry list and project detail page
+ ******************************************************************************/
+
+// -----------------------------------------------------------------------------
+// List page
+// -----------------------------------------------------------------------------
+
+.project-list {
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.project-list__empty {
+  padding: 1.75rem 0;
+  border-top: 1px solid #2a241f;
+  color: #8f8177;
+  font-size: var(--font-size-body);
+}
+
+.project-entry {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
+  padding: 1.75rem 0;
+  border-top: 1px solid #2a241f;
+  color: inherit;
+  text-decoration: none;
+
+  &:last-child {
+    border-bottom: 1px solid #2a241f;
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+
+    .project-entry__title {
+      color: #b89278;
+    }
+
+    .project-entry__thumb img {
+      opacity: 1;
+    }
+  }
+}
+
+// Entries without a thumbnail drop the image column instead of leaving a gap.
+.project-entry--no-thumb {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-entry__thumb {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #2a241f;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.88;
+    transition: opacity 0.2s ease;
+  }
+}
+
+.project-entry__kicker {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+}
+
+.project-entry__category {
+  color: #b89278;
+  font-size: var(--font-size-kicker);
+  font-weight: 760;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.project-entry__year {
+  flex-shrink: 0;
+  color: #8f8177;
+  font-size: var(--font-size-meta);
+  font-variant-numeric: tabular-nums;
+}
+
+.project-entry__title {
+  margin: 0;
+  color: #ece6de;
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-weight: 760;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.project-entry__description {
+  max-width: 62ch;
+  margin: 0.6rem 0 0;
+  color: #bdb0a6;
+  font-size: var(--font-size-body);
+  line-height: 1.65;
+}
+
+.project-entry__byline {
+  margin: 0.75rem 0 0;
+  color: #8f8177;
+  font-size: var(--font-size-meta);
+}
+
+.project-entry__dot {
+  padding: 0 0.4rem;
+  color: #3a3029;
+}
+
+// -----------------------------------------------------------------------------
+// Detail page
+// -----------------------------------------------------------------------------
+
+.project-eyebrow {
+  margin: 0 0 0.85rem;
+  color: #b89278;
+  font-size: var(--font-size-kicker);
+  font-weight: 760;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.project-meta {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0.55rem 1.5rem;
+  padding: 1.5rem 0;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid #2a241f;
+  border-bottom: 1px solid #2a241f;
+
+  dt {
+    color: #8f8177;
+    font-size: var(--font-size-kicker);
+    font-weight: 760;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    color: #bdb0a6;
+    font-size: var(--font-size-meta);
+  }
+
+  a {
+    color: #b89278;
+    text-decoration-color: rgba(184, 146, 120, 0.45);
+    text-underline-offset: 0.22em;
+  }
+}
+
+.project-meta__dot {
+  padding: 0 0.3rem;
+  color: #3a3029;
+}
+
+.project-body {
+  figure {
+    margin: clamp(1.75rem, 4vw, 2.75rem) 0;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  img-comparison-slider {
+    display: block;
+    margin: clamp(1.75rem, 4vw, 2.75rem) 0;
+
+    figure {
+      margin: 0;
+    }
+  }
+
+  details {
+    padding: 1rem 0;
+    border-top: 1px solid #2a241f;
+    border-bottom: 1px solid #2a241f;
+    margin: clamp(1.75rem, 4vw, 2.75rem) 0;
+
+    summary {
+      color: #ece6de;
+      font-weight: 760;
+      cursor: pointer;
+    }
+  }
+
+  .echarts,
+  canvas {
+    margin: clamp(1.75rem, 4vw, 2.75rem) 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Narrow screens
+// -----------------------------------------------------------------------------
+
+@media (max-width: 576px) {
+  .project-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .project-meta {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.2rem;
+
+    dd {
+      margin-bottom: 0.7rem;
+    }
+  }
+}

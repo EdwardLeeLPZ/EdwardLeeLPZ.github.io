@@ -126,6 +126,11 @@ collections:
     output: true
   posts:
     output: true
+  projects:
+    output: true
+    # The blog permalink above is empty, which would otherwise emit
+    # /projects/<slug>.html for this collection instead of a directory URL.
+    permalink: /:collection/:path/
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -155,6 +160,7 @@ exclude:
   - _pages/about_einstein.md
   - README.md
   - docs
+  - tools
   - vendor
 keep_files:
   - CNAME
@@ -295,6 +301,8 @@ external_links:
 
 # MAKE SURE imagemagick is installed and on your PATH before enabling imagemagick. In a terminal, run:
 #   convert -version
+# Turning this on also requires reinstating the imagemagick install step in
+# .github/workflows/deploy.yml, which was dropped while this stays disabled.
 imagemagick:
   enabled: false
   widths:
