@@ -31,7 +31,7 @@ The Manifold Hypothesis is not merely theoretical speculation; it is validated i
 
 **1. Latent Space Interpolation**
 
-Linear interpolation ($0.5A + 0.5B$) between two facial images A and B in pixel space typically results in a ghostly, unnatural superposition because the interpolated data leaves the manifold, entering the empty void of the high-dimensional space.
+Linear interpolation ($$0.5A + 0.5B$$) between two facial images A and B in pixel space typically results in a ghostly, unnatural superposition because the interpolated data leaves the manifold, entering the empty void of the high-dimensional space.
 
 However, using Generative Adversarial Networks (GANs) or Variational Autoencoders (VAEs) to map images into a low-dimensional latent space, interpolating, and then decoding, yields a smooth transition from face A to face B. This demonstrates that data forms a continuous low-dimensional manifold, where coordinate migration reflects feature transformation.
 
