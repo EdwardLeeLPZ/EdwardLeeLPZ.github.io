@@ -1,7 +1,7 @@
 ---
 layout: project
 title: 3D Occupancy Auto-Labeling Pipeline
-description: An auto-labeling pipeline that turned 1,500 driving episodes into 3D occupancy training labels with no human annotation, and the vehicle model distilled from them, for $7.9–8.3k of cloud compute.
+description: An auto-labeling pipeline that turned 1,500 driving episodes into 3D occupancy training labels with no human annotation, and the vehicle model distilled from them, for just over half of a $15,000 compute budget.
 category: demo
 importance: 1
 img: assets/img/project_images/occupancy-auto-labeling-pipeline/thumbnail.webp
@@ -40,21 +40,23 @@ I built that pipeline and ran it: 1,500 episodes, 30,000 keyframe label files, g
 returns, camera video and an open-vocabulary detector, with no human annotation anywhere in the
 chain. The first corpus came back with a geometric defect that made it unusable. I traced it to its
 cause, fixed it with a single rule, rebuilt all 1,500 episodes on 251 machines in 4.6 hours, and
-handed the distilled single-frame model to the vehicle side. Labeling had a $5,000 budget with
-training compute explicitly outside it; a separate $5,000–8,000 envelope opened for training once
-the labeling budget was spent, and both pools together came to $7.9–8.3k. The plan had called for
+handed the distilled single-frame model to the vehicle side. The ceiling the team agreed for the
+whole effort, labeling and training together, was $15,000. Internally that became a $5,000 labeling
+budget with training compute explicitly outside it, and a separate $5,000–8,000 training envelope
+opened once the labeling budget was spent. Both pools together came to $7.9–8.3k, a little over half
+the ceiling. The plan had called for
 1,500 to 2,000 curated episodes, for parity with the public benchmark the model was developed
 against, and the budget bought the low end of that range. This page is about the engineering; the
 model architecture is published separately {% cite li2025ago %}.
 
-| What changed                       | Before  | After     | How it was measured                                                                                    |
-| ---------------------------------- | ------- | --------- | ------------------------------------------------------------------------------------------------------ |
-| Out-of-box aerial ghost voxels     | 19,017  | 2,399     | One metric, 19 episodes, 86 shared keyframes, all four pipeline versions                               |
-| Reverse-visibility pass, per frame | 161 s   | 8.5 s     | Same frames, method the only change; zero fabricated free voxels, 98.8 % retained; one 32-core node    |
-| Training step time                 | 3.155 s | 0.958 s   | Per-section timing over 20 recorded steps, batch 2, one 8×A100 node, before and after                  |
-| Label supervision coverage         | ~31 %   | 77.1 %    | Share of forward-180° voxels the training mask supervises, on a 12-episode sample weighted 700/800     |
-| Cost per labeled episode           | —       | $2.84     | Platform node-hours × a fixed per-node-hour price anchor                                               |
-| Whole-project cloud spend          | —       | $7.9–8.3k | Platform reconciliation across 362 executions and 1,207 node-hours, submit-to-finish, at fixed anchors |
+| What changed                       | Before          | After     | How it was measured                                                                                    |
+| ---------------------------------- | --------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| Out-of-box aerial ghost voxels     | 19,017          | 2,399     | One metric, 19 episodes, 86 shared keyframes, all four pipeline versions                               |
+| Reverse-visibility pass, per frame | 161 s           | 8.5 s     | Same frames, method the only change; zero fabricated free voxels, 98.8 % retained; one 32-core node    |
+| Training step time                 | 3.155 s         | 0.958 s   | Per-section timing over 20 recorded steps, batch 2, one 8×A100 node, before and after                  |
+| Label supervision coverage         | ~31 %           | 77.1 %    | Share of forward-180° voxels the training mask supervises, on a 12-episode sample weighted 700/800     |
+| Cost per labeled episode           | —               | $2.84     | Platform node-hours × a fixed per-node-hour price anchor                                               |
+| Whole-project cloud spend          | $15,000 ceiling | $7.9–8.3k | Platform reconciliation across 362 executions and 1,207 node-hours, submit-to-finish, at fixed anchors |
 
 **My role.** I designed the pipeline, wrote the aggregation, quality-gate and verification code, ran
 every cloud campaign, and made the calls on what to fix and what to ship. The cluster, the episode
@@ -152,9 +154,10 @@ Figure 3: cost per episode at every measurement point. The two fleet bars are th
 because they are whole-campaign actuals rather than single-episode probes, and they are not
 interchangeable with the rest: the fleet bars include GPU detection, the second-version bar is
 CPU-only re-aggregation from caches already paid for, and the probes are single episodes. The two
-waves, 700 episodes at $2.84 and 800 at $2.87, came to $4,292. Curation, probes, the three fix rounds
-and the wave-1 re-aggregation added $654–730, which puts the labeling pool at $4.95–5.02k against a
-$5,000 ceiling — the upper end of the band sits on the line.
+waves, 700 episodes at $2.84 and 800 at $2.87, came to $4,284, and one failed shard added $8.
+Curation, probes, the three fix rounds and the wave-1 re-aggregation added $654–730, which puts the
+labeling pool at $4.95–5.02k against its $5,000 ceiling: the low end clears it, the high end is $22
+past it.
 
 One number is missing from that chart because I retracted it. An early concurrency probe reported
 $0.473 per episode, a 5.69× improvement; an audit the same evening showed the divisor counted
