@@ -226,11 +226,57 @@
 }
 
 // -----------------------------------------------------------------------------
+// Homepage highlights
+// -----------------------------------------------------------------------------
+
+// The same entries also open the homepage's Projects section, directly under the
+// publication highlights. There the thumbnail takes the share of the column a
+// paper preview takes (measured: 312 of 996 px) and the title drops to the size
+// of a paper title, so the two sections read as one list rather than two
+// designs. The section header already supplies the space above the first entry.
+.home-card--projects {
+  .project-list {
+    margin-top: 0;
+  }
+
+  .project-entry {
+    grid-template-columns: 31.33% minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 1.9rem);
+    padding: 1.3rem 0;
+  }
+
+  .project-entry--no-thumb {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  // Same frame as the paper previews it lines up with.
+  .project-entry__thumb {
+    border-color: #3a3029;
+  }
+
+  // An h3 here, because the section owns the h2. Sized to the paper titles in
+  // the section above, which _base.scss sets to 1rem / 1.4 under .publications.
+  .project-entry__title {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  // The list page caps the measure because the description is the widest thing
+  // on the row; here the entry is already inside the homepage column.
+  .project-entry__description {
+    max-width: none;
+  }
+}
+
+// -----------------------------------------------------------------------------
 // Narrow screens
 // -----------------------------------------------------------------------------
 
 @media (max-width: 576px) {
-  .project-entry {
+  // The homepage selector above is one specificity step stronger, so it has to
+  // be named here as well or the thumbnail column survives onto the phone.
+  .project-entry,
+  .home-card--projects .project-entry {
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
   }

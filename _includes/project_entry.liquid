@@ -1,4 +1,14 @@
+{% comment %}
+  One project row. Rendered identically on /projects/ and in the homepage
+  highlights section; only the heading level differs, because on the homepage
+  the section itself already owns the h2.
+
+  include.project  the collection document
+  include.heading  heading tag for the title, defaults to h2
+{% endcomment %}
+
 {% assign project = include.project %}
+{% assign title_tag = include.heading | default: 'h2' %}
 {% if project.redirect %}
   {% assign entry_url = project.redirect %}
 {% else %}
@@ -24,7 +34,7 @@
       </div>
     {% endif %}
 
-    <h2 class="project-entry__title">{{ project.title }}</h2>
+    <{{ title_tag }} class="project-entry__title">{{ project.title }}</{{ title_tag }}>
 
     {% if project.description %}
       <p class="project-entry__description">{{ project.description }}</p>

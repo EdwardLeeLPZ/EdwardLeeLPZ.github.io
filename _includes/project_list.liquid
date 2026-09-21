@@ -1,0 +1,25 @@
+{% comment %}
+  The project list. Shared by /projects/ and by the homepage highlights section
+  so the two orderings can never drift apart.
+
+  include.limit    maximum number of entries; omit to list all of them
+  include.heading  heading tag for entry titles, passed through to project_entry
+  include.empty    text shown when the collection is empty; omit to show nothing
+{% endcomment %}
+
+{% assign sorted_projects = site.projects | sort: 'importance' %}
+{% if include.limit %}
+  {% assign listed_projects = sorted_projects | slice: 0, include.limit %}
+{% else %}
+  {% assign listed_projects = sorted_projects %}
+{% endif %}
+
+<div class="project-list">
+  {% for project in listed_projects %}
+    {% include project_entry.liquid project=project heading=include.heading %}
+  {% else %}
+    {% if include.empty %}
+      <p class="project-list__empty">{{ include.empty }}</p>
+    {% endif %}
+  {% endfor %}
+</div>

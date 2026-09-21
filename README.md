@@ -6,8 +6,9 @@ The site is a customized Jekyll homepage focused on Spatial Intelligence, Multim
 
 ## Current site
 
-- **Home**: concise research positioning, selected updates, featured publications, writing highlights, and open-position statement.
+- **Home**: concise research positioning, selected updates, featured publications, selected projects, writing highlights, and open-position statement.
 - **Publications**: BibTeX-driven publication list with venue/year metadata, previews, paper links, posters, videos, and selected paper badges.
+- **Projects**: engineering write-ups from the `_projects` collection, each its own page with charts, figures, and interactive viewers.
 - **Blogs**: research notes and technical writing in English and Chinese.
 - **CV**: structured CV sections from `_data/cv.yml` plus an embedded high-DPI PDF.js viewer for `assets/pdf/Resume.pdf`.
 
@@ -26,7 +27,8 @@ Primary style entry points:
 - `_sass/_variables.scss` and `_sass/_themes.scss` define the shared palette tokens.
 - `_sass/_homepage.scss` controls the homepage composition.
 - `_sass/_pages.scss` controls shared subpage styling, publications, blog, CV, and navigation.
-- `_layouts/about.liquid`, `_layouts/bib.liquid`, and `_layouts/cv.liquid` provide the main custom page layouts.
+- `_sass/_projects.scss` controls the project list, the project detail page, and the homepage project highlights.
+- `_layouts/about.liquid`, `_layouts/bib.liquid`, `_layouts/cv.liquid`, and `_layouts/project.liquid` provide the main custom page layouts.
 
 ## Content sources
 
@@ -34,7 +36,9 @@ Primary style entry points:
 - `_data/cv.yml` stores structured CV content.
 - `_bibliography/papers.bib` stores publication metadata.
 - `_posts/` stores blog posts.
+- `_projects/` stores project write-ups; one file per project, ordered by `importance`.
 - `assets/img/publication_preview/` stores publication preview images.
+- `assets/img/project_images/` stores project thumbnails and figures.
 - `assets/pdf/` stores posters and the embedded resume PDF.
 
 ## Local development
@@ -129,6 +133,7 @@ After deployment, verify:
 
 - <https://edwardleelpz.github.io/>
 - <https://edwardleelpz.github.io/publications/>
+- <https://edwardleelpz.github.io/projects/>
 - <https://edwardleelpz.github.io/blog/>
 - <https://edwardleelpz.github.io/cv/>
 

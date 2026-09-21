@@ -98,13 +98,27 @@ layout: default
       </section>
     {% endif %}
 
+    {% if page.projects and page.projects.enabled and site.projects.size > 0 %}
+      <section class="home-step home-card home-card--projects">
+        <div class="home-step__marker" aria-hidden="true"></div>
+        <div class="home-card__header">
+          <div>
+            <p class="home-step__kicker">04 · Projects</p>
+            <h2><a href="{{ '/projects/' | relative_url }}">Selected projects</a></h2>
+          </div>
+          <a class="home-card__link" href="{{ '/projects/' | relative_url }}">All projects</a>
+        </div>
+        {% include project_list.liquid limit=page.projects.limit heading='h3' %}
+      </section>
+    {% endif %}
+
     {% assign english_posts = site.posts | where_exp: 'p', "p.path contains 'English'" %}
     {% if english_posts.size > 0 %}
       <section class="home-step home-card">
         <div class="home-step__marker" aria-hidden="true"></div>
         <div class="home-card__header">
           <div>
-            <p class="home-step__kicker">04 · Writing</p>
+            <p class="home-step__kicker">05 · Writing</p>
             <h2><a href="{{ '/blog/' | relative_url }}">Research notes</a></h2>
           </div>
           <a class="home-card__link" href="{{ '/blog/' | relative_url }}">All posts</a>
@@ -131,7 +145,7 @@ layout: default
         <div class="home-step__marker" aria-hidden="true"></div>
         <div class="home-card__header">
           <div>
-            <p class="home-step__kicker">05 · Contact & positions</p>
+            <p class="home-step__kicker">06 · Contact & positions</p>
             <h2>{{ page.contact_heading | default: 'Open to research conversations and collaborations.' }}</h2>
           </div>
         </div>

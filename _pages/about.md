@@ -34,6 +34,10 @@ selected_papers_order: # custom display order of the homepage publication highli
   - canevaro2026shift
   - ding2026tqd
   - lai2026famhri
+projects:
+  enabled: true # includes the project highlights section
+  limit: 3 # leave blank to include every project in the `_projects` folder
+
 social: true # includes social icons at the bottom of the page
 
 announcements:
