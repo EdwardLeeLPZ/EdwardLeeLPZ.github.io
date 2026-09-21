@@ -208,6 +208,21 @@
     display: block;
     margin: 0 auto;
   }
+
+  // Mermaid's own injected style puts edge labels on a mid-grey block, which
+  // reads as a foreign object here. Sit them on the page instead, so the label
+  // interrupts the connector the way a hand-drawn one would. It injects that
+  // style scoped to "#mermaid-<timestamp>", an id no stylesheet can match, so
+  // !important is the only way to outrank it; the custom properties keep the
+  // override following the light and dark themes.
+  .mermaid .edgeLabel,
+  .mermaid .edgeLabel span,
+  .mermaid .edgeLabel rect {
+    background-color: var(--global-bg-color) !important;
+    fill: var(--global-bg-color) !important;
+    color: var(--global-text-color) !important;
+    opacity: 1 !important;
+  }
 }
 
 // -----------------------------------------------------------------------------

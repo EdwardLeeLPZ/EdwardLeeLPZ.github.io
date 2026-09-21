@@ -99,7 +99,8 @@ flowchart TB
     direction LR
     G["Distillation targets<br/>precomputed once"] --> H["Student model<br/>8 GPUs, 24 epochs"] --> I["Slim checkpoint<br/>252 MB<br/>to the vehicle team"]
   end
-  S1 --> S2 --> S3
+  S1 -->|"detector output cached once"| S2
+  S2 -->|"30,000 pseudo-label files"| S3
 ```
 
 Everything downstream of detection is deterministic and CPU-only, which is what later let a second
