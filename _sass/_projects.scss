@@ -201,6 +201,13 @@
   canvas {
     margin: clamp(1.75rem, 4vw, 2.75rem) 0;
   }
+
+  // Mermaid renders at the diagram's natural width, which is narrower than the
+  // column, so without this the diagram sits against the left margin.
+  .mermaid svg {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 // -----------------------------------------------------------------------------
