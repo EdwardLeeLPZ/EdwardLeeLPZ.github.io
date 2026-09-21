@@ -23,6 +23,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "Engineering demos, system prototypes, and internal tooling.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
         },{id: "nav-cv",
           title: "CV",
           description: "Education, work experience, technical skills, and academic service.",
@@ -48,7 +55,12 @@ ninja.data = [{
           section: "News",},{id: "news-our-tqd-track-temporal-query-denoising-for-3d-multi-object-tracking-paper-is-accepted-by-bmvc-2026",
           title: 'Our TQD-Track: Temporal Query Denoising for 3D Multi-Object Tracking paper is accepted by...',
           description: "",
-          section: "News",},{
+          section: "News",},{id: "projects-3d-occupancy-auto-labeling-pipeline",
+          title: '3D Occupancy Auto-Labeling Pipeline',
+          description: "The closing demonstrator for Mercedes-Benz AG in the nxtAIM research programme: auto-labeling that turned 1,500 driving episodes into 3D occupancy training data with no human annotation, for half of a $15,000 compute budget.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/occupancy-auto-labeling-pipeline/";
+            },},{
       id: 'light-theme',
       title: 'Change theme to light',
       description: 'Change the theme of the site to Light',
