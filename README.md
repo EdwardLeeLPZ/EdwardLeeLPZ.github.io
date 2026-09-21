@@ -6,7 +6,7 @@ The site is a customized Jekyll homepage focused on Spatial Intelligence, Multim
 
 ## Current site
 
-- **Home**: concise research positioning, selected updates, featured publications, selected projects, writing highlights, and open-position statement.
+- **Home**: concise research positioning, selected updates, featured publications, project highlights, writing highlights, and open-position statement.
 - **Publications**: BibTeX-driven publication list with venue/year metadata, previews, paper links, posters, videos, and selected paper badges.
 - **Projects**: engineering write-ups from the `_projects` collection, each its own page with charts, figures, and interactive viewers.
 - **Blogs**: research notes and technical writing in English and Chinese.
