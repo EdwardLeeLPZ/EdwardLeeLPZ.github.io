@@ -105,6 +105,18 @@ With a native Ruby 3.1+ toolchain the last two are equivalent to `bundle check` 
 `bundle exec jekyll build --config _config.yml --disable-disk-cache`.
 
 Production deployment uses `.github/workflows/deploy.yml` and builds with `_config.yml`.
+That build sets `JEKYLL_ENV=production`, which is the only mode that runs
+jekyll-minifier, so a page can build cleanly in every command above and still be
+mangled once deployed. Before pushing a page that carries its own markup — an
+inline `<style>`, an inline `<script>`, or a comment quoting either — run:
+
+```bash
+tools/jekyll-docker.sh build-production
+```
+
+Note that the minifier strips HTML comments, and a comment containing a literal
+script tag makes it drop the rest of the page. Document includes with Liquid
+comments, which never reach the output at all.
 
 ## Deployment
 

@@ -1,0 +1,440 @@
+{% comment %}
+  Interactive pseudo-label voxel viewer.
+
+  No build step and no server side: one pinned CDN file (three.js 0.160.0 UMD,
+  the last release cdnjs ships as a plain script tag), one first-party asset,
+  and ~40 lines of pointer maths instead of OrbitControls, which cdnjs does not
+  host for any three.js version.
+
+  The asset is a gzipped, self-describing blob: grid dimensions, voxel size,
+  keyframe list, class names and the repo's own palette all travel in its JSON
+  header, so nothing below is hard-coded against the data. Regenerate with
+  showcase/scripts/make_voxel_payload.py.
+
+  This note is a Liquid comment rather than an HTML one on purpose. The
+  production build runs jekyll-minifier with remove_comments, and a literal
+  script tag inside an HTML comment makes its comment stripper swallow the
+  rest of the page: the eight sections below the viewer silently became four.
+{% endcomment %}
+
+<div id="ago-voxels" data-src="{{ '/assets/data/ago-labels-840b8fdb.bin' | relative_url }}">
+  <div class="ago-stage">
+    <canvas></canvas>
+    <p class="ago-status">Loading labels…</p>
+  </div>
+  <div class="ago-controls">
+    <input type="range" min="0" max="19" value="0" step="1" aria-label="keyframe" disabled>
+    <span class="ago-readout">drag to orbit · scroll or pinch to zoom</span>
+    <label><input type="checkbox" class="ago-cull" checked> hide enclosed voxels</label>
+  </div>
+  <p class="ago-legend"></p>
+</div>
+
+<style>
+  #ago-voxels .ago-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+  @media (max-width: 576px) {
+    #ago-voxels .ago-stage {
+      aspect-ratio: 4 / 3;
+    }
+  }
+  #ago-voxels canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+    cursor: grab;
+  }
+  #ago-voxels canvas.ago-dragging {
+    cursor: grabbing;
+  }
+  #ago-voxels .ago-status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  #ago-voxels .ago-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+  }
+  #ago-voxels input[type='range'] {
+    flex: 1 1 11rem;
+    min-width: 8rem;
+  }
+  #ago-voxels .ago-readout {
+    opacity: 0.75;
+    font-variant-numeric: tabular-nums;
+  }
+  #ago-voxels .ago-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.9rem;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    opacity: 0.85;
+  }
+  #ago-voxels .ago-legend i {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 0.3rem;
+    vertical-align: -1px;
+  }
+</style>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"
+  integrity="sha384-qOkzR5Ke/XkQxuGVJ9hpFEpDlcoLtWwVYhnJf06cLIZa2vaIptSqaubivErzmD5O"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script>
+  (async function () {
+    const root = document.getElementById('ago-voxels');
+    const canvas = root.querySelector('canvas');
+    const status = root.querySelector('.ago-status');
+    const slider = root.querySelector('input[type=range]');
+    const readout = root.querySelector('.ago-readout');
+    const cullBox = root.querySelector('.ago-cull');
+
+    const fail = (msg) => {
+      status.textContent = msg;
+      status.style.opacity = 1;
+    };
+    if (typeof THREE === 'undefined') return fail('3D library unavailable.');
+
+    // ---- load. The asset ships pre-compressed, because a static host will not
+    // gzip application/octet-stream for us. If a host does decompress it on the
+    // way out, the bytes arrive already inflated -- so decide from the gzip
+    // magic number rather than trusting either behaviour.
+    let head, body, X, Y, Z, N, S;
+    try {
+      const res = await fetch(root.dataset.src);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      let buf = new Uint8Array(await res.arrayBuffer());
+      if (buf[0] === 0x1f && buf[1] === 0x8b) {
+        if (typeof DecompressionStream === 'undefined') throw new Error('no gzip support');
+        buf = new Uint8Array(await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
+      }
+      if (new TextDecoder().decode(buf.subarray(0, 7)) !== 'AGOVOX1') throw new Error('bad magic');
+      const hlen = new DataView(buf.buffer, buf.byteOffset, buf.byteLength).getUint32(7, true);
+      head = JSON.parse(new TextDecoder().decode(buf.subarray(11, 11 + hlen)));
+      body = buf.subarray(11 + hlen);
+      [X, Y, Z] = head.grid;
+      N = X * Y * Z;
+      S = head.voxel_size_m;
+      if (body.length < N * head.keyframes.length) throw new Error('payload truncated');
+    } catch (e) {
+      return fail('Could not load the labels (' + e.message + ').');
+    }
+
+    // ---- palette. Convert once, in the renderer's working colour space, so
+    // the per-instance colour buffer can be written directly afterwards.
+    const linear = new Map();
+    const tmp = new THREE.Color();
+    for (const c of head.classes) {
+      tmp.setRGB(c.rgb[0] / 255, c.rgb[1] / 255, c.rgb[2] / 255, THREE.SRGBColorSpace);
+      linear.set(c.id, [tmp.r, tmp.g, tmp.b]);
+    }
+    const GREY = [0.25, 0.25, 0.25];
+
+    // ---- scene
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, 16 / 10, 0.5, 500);
+    camera.up.set(0, 0, 1);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x2a2622, 2.2));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+    sun.position.set(0.6, 0.8, 1.6);
+    scene.add(sun);
+
+    // One InstancedMesh for the whole keyframe, so a keyframe is one draw call.
+    const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(S, S, S), new THREE.MeshLambertMaterial(), 1);
+    let capacity = 0;
+    scene.add(mesh);
+
+    function reserve(n) {
+      if (n <= capacity) return;
+      capacity = Math.ceil(n * 1.2);
+      mesh.dispose();
+      mesh.count = 0;
+      mesh.instanceMatrix = new THREE.InstancedBufferAttribute(new Float32Array(capacity * 16), 16);
+      mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(capacity * 3), 3);
+      mesh.instanceColor.setUsage(THREE.DynamicDrawUsage);
+    }
+
+    // Scanning 640,000 cells per keyframe is the expensive part, so each
+    // (keyframe, cull) result is kept: scrubbing back over the slider is free.
+    const cache = new Map();
+    let framed = false;
+
+    function pick(kf, cull) {
+      const key = kf + (cull ? 'c' : 'f');
+      const hit = cache.get(key);
+      if (hit) return hit;
+      const off = kf * N,
+        free = head.free_id,
+        unobs = head.unobserved_id;
+      const out = new Int32Array(N >> 3);
+      let n = 0;
+      let grow = out;
+      const push = (i) => {
+        if (n === grow.length) {
+          const bigger = new Int32Array(Math.ceil(grow.length * 1.6));
+          bigger.set(grow);
+          grow = bigger;
+        }
+        grow[n++] = i;
+      };
+      const solid = (i) => {
+        const v = body[off + i];
+        return v !== free && v !== unobs;
+      };
+      for (let x = 0; x < X; x++) {
+        const edgeX = x === 0 || x === X - 1;
+        for (let y = 0; y < Y; y++) {
+          const edgeY = y === 0 || y === Y - 1;
+          const base = (x * Y + y) * Z;
+          for (let z = 0; z < Z; z++) {
+            const i = base + z;
+            if (!solid(i)) continue;
+            // An interior voxel is hidden by its six neighbours, so dropping it
+            // changes nothing visible and removes ~13 % of the instances.
+            if (
+              cull &&
+              !edgeX &&
+              !edgeY &&
+              z > 0 &&
+              z < Z - 1 &&
+              solid(i - Y * Z) &&
+              solid(i + Y * Z) &&
+              solid(i - Z) &&
+              solid(i + Z) &&
+              solid(i - 1) &&
+              solid(i + 1)
+            )
+              continue;
+            push(i);
+          }
+        }
+      }
+      const picked = grow.subarray(0, n);
+      cache.set(key, picked);
+      return picked;
+    }
+
+    const [x0, y0, z0] = head.pc_range;
+
+    function build(kf) {
+      const picked = pick(kf, cullBox.checked);
+      reserve(Math.max(picked.length, 1));
+      const m = mesh.instanceMatrix.array;
+      const c = mesh.instanceColor.array;
+      const off = kf * N;
+      for (let k = 0; k < picked.length; k++) {
+        const i = picked[k];
+        const z = i % Z;
+        const y = ((i - z) / Z) % Y;
+        const x = (i - z - y * Z) / (Y * Z);
+        // Translation-only matrix, written straight into the buffer: three.js
+        // stores instance matrices column-major with translation at 12..14.
+        const o = k * 16;
+        m[o] = 1;
+        m[o + 1] = 0;
+        m[o + 2] = 0;
+        m[o + 3] = 0;
+        m[o + 4] = 0;
+        m[o + 5] = 1;
+        m[o + 6] = 0;
+        m[o + 7] = 0;
+        m[o + 8] = 0;
+        m[o + 9] = 0;
+        m[o + 10] = 1;
+        m[o + 11] = 0;
+        m[o + 12] = x0 + (x + 0.5) * S;
+        m[o + 13] = y0 + (y + 0.5) * S;
+        m[o + 14] = z0 + (z + 0.5) * S;
+        m[o + 15] = 1;
+        const rgb = linear.get(body[off + i]) || GREY;
+        const q = k * 3;
+        c[q] = rgb[0];
+        c[q + 1] = rgb[1];
+        c[q + 2] = rgb[2];
+      }
+      mesh.count = picked.length;
+      mesh.instanceMatrix.needsUpdate = true;
+      mesh.instanceColor.needsUpdate = true;
+      if (!framed) {
+        framed = true;
+        frame(picked);
+        place();
+      }
+      readout.textContent = 'keyframe ' + head.keyframes[kf] + ' · ' + picked.length.toLocaleString() + ' voxels';
+      draw();
+    }
+
+    // ---- camera. Rendering happens on demand rather than in a continuous
+    // loop: the scene is static between interactions, and a phone should not
+    // spend its battery redrawing an unchanged picture.
+    let yaw = -2.25,
+      pitch = 0.52,
+      radius = 100,
+      queued = false;
+    const target = new THREE.Vector3(0, 0, 1.5);
+    function place(quiet) {
+      const cp = Math.cos(pitch);
+      camera.position.set(target.x + radius * cp * Math.cos(yaw), target.y + radius * cp * Math.sin(yaw), target.z + radius * Math.sin(pitch));
+      camera.lookAt(target);
+      if (!quiet) draw();
+    }
+
+    // Aim at what is actually labelled, so a different episode needs no
+    // hand-tuned camera. Centring on the bounding box alone is not enough:
+    // under perspective the near half of a ground plane is magnified, so the
+    // picture ends up low in the frame. Project the box corners instead and
+    // iterate until they are centred and just fit.
+    function frame(picked) {
+      let lo = [Infinity, Infinity, Infinity],
+        hi = [-Infinity, -Infinity, -Infinity];
+      for (let k = 0; k < picked.length; k += 7) {
+        const i = picked[k];
+        const z = i % Z,
+          y = ((i - z) / Z) % Y,
+          x = (i - z - y * Z) / (Y * Z);
+        const p = [x0 + x * S, y0 + y * S, z0 + z * S];
+        for (let d = 0; d < 3; d++) {
+          if (p[d] < lo[d]) lo[d] = p[d];
+          if (p[d] > hi[d]) hi[d] = p[d];
+        }
+      }
+      if (!isFinite(lo[0])) return;
+      target.set((lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, (lo[2] + hi[2]) / 2);
+      radius = Math.hypot(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]);
+
+      const corners = [];
+      for (let a = 0; a < 8; a++) corners.push(new THREE.Vector3(a & 1 ? hi[0] : lo[0], a & 2 ? hi[1] : lo[1], a & 4 ? hi[2] : lo[2]));
+      const right = new THREE.Vector3(),
+        up = new THREE.Vector3(),
+        back = new THREE.Vector3(),
+        v = new THREE.Vector3();
+      const MARGIN = 0.94;
+      for (let pass = 0; pass < 5; pass++) {
+        place(true);
+        camera.updateMatrixWorld();
+        let nx = Infinity,
+          px = -Infinity,
+          ny = Infinity,
+          py = -Infinity;
+        for (const c of corners) {
+          v.copy(c).project(camera);
+          nx = Math.min(nx, v.x);
+          px = Math.max(px, v.x);
+          ny = Math.min(ny, v.y);
+          py = Math.max(py, v.y);
+        }
+        const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * radius;
+        camera.matrixWorld.extractBasis(right, up, back);
+        target.addScaledVector(right, ((nx + px) / 2) * halfH * camera.aspect).addScaledVector(up, ((ny + py) / 2) * halfH);
+        radius *= Math.max((px - nx) / 2, (py - ny) / 2) / MARGIN;
+      }
+    }
+    function draw() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        renderer.render(scene, camera);
+      });
+    }
+
+    // ---- input: one pointer orbits, two pinch. Pointer events cover mouse,
+    // touch and pen in one path, which is why OrbitControls is not needed.
+    const pointers = new Map();
+    let pinch = 0;
+    canvas.addEventListener('pointerdown', (e) => {
+      pointers.set(e.pointerId, e);
+      canvas.setPointerCapture(e.pointerId);
+      canvas.classList.add('ago-dragging');
+    });
+    const release = (e) => {
+      pointers.delete(e.pointerId);
+      if (pointers.size < 2) pinch = 0;
+      if (!pointers.size) canvas.classList.remove('ago-dragging');
+    };
+    canvas.addEventListener('pointerup', release);
+    canvas.addEventListener('pointercancel', release);
+    canvas.addEventListener('pointermove', (e) => {
+      const prev = pointers.get(e.pointerId);
+      if (!prev) return;
+      pointers.set(e.pointerId, e);
+      if (pointers.size === 1) {
+        yaw -= (e.clientX - prev.clientX) * 0.006;
+        pitch = Math.max(0.04, Math.min(1.5, pitch + (e.clientY - prev.clientY) * 0.006));
+        place();
+      } else if (pointers.size === 2) {
+        const [a, b] = [...pointers.values()];
+        const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+        if (pinch) zoom(pinch / d);
+        pinch = d;
+      }
+    });
+    canvas.addEventListener(
+      'wheel',
+      (e) => {
+        e.preventDefault();
+        zoom(1 + Math.sign(e.deltaY) * 0.12);
+      },
+      { passive: false }
+    );
+    function zoom(factor) {
+      radius = Math.max(12, Math.min(240, radius * factor));
+      place();
+    }
+
+    // ---- fit to whatever width the column gives it, including a layout
+    // change that does not resize the window.
+    const fit = () => {
+      const r = canvas.getBoundingClientRect();
+      if (!r.width) return;
+      renderer.setSize(r.width, r.height, false);
+      camera.aspect = r.width / r.height;
+      camera.updateProjectionMatrix();
+      draw();
+    };
+    new ResizeObserver(fit).observe(root.querySelector('.ago-stage'));
+
+    // ---- legend: only the classes this episode actually contains.
+    const present = new Set();
+    for (let i = 0; i < body.length; i++) present.add(body[i]);
+    root.querySelector('.ago-legend').innerHTML = head.classes
+      .filter((c) => present.has(c.id) && c.id !== head.free_id && c.id !== head.unobserved_id)
+      .map((c) => '<span><i style="background:rgb(' + c.rgb.join(',') + ')"></i>' + c.name + '</span>')
+      .join('');
+
+    slider.max = head.keyframes.length - 1;
+    slider.value = 0;
+    slider.disabled = false;
+    slider.addEventListener('input', () => build(+slider.value));
+    cullBox.addEventListener('change', () => build(+slider.value));
+
+    status.remove();
+    fit();
+    place();
+    build(0);
+  })();
+</script>

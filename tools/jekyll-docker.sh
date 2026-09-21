@@ -28,6 +28,7 @@ Usage: tools/jekyll-docker.sh <command> [arguments]
   install         Install the gems recorded in Gemfile.lock into vendor/bundle
   check           Report whether the installed gems satisfy Gemfile.lock
   build           Build the site into _site/
+  build-production  Build the way the deploy workflow does, with the minifier
   serve [port]    Serve the site with live reload (default port 4000)
   shell           Open an interactive shell inside the container
   run <command>   Run an arbitrary command inside the container
@@ -112,6 +113,32 @@ config_list() {
   fi
 }
 
+# Jekyll reports a malformed front matter as "Error: YAML Exception ..." and
+# still exits 0, having written the page with no layout and no title. A build
+# is only a pass if it also printed no error line.
+run_build() {
+  local env_prefix="$1"
+  local log="${REPO_ROOT}/.jekyll-build.log"
+  set +e
+  run_with_gems "${env_prefix}bundle exec jekyll build --config $(config_list) --disable-disk-cache" 2>&1 | tee "${log}"
+  local status="${PIPESTATUS[0]}"
+  set -e
+  if [ "${status}" -ne 0 ]; then
+    rm -f "${log}"
+    return "${status}"
+  fi
+  # Jekyll colours that line, so the escape sequence comes before the
+  # indentation. Strip the colours first rather than pattern around them.
+  local errors
+  errors="$(sed -e 's/\x1b\[[0-9;]*m//g' "${log}" | grep -E '^[[:space:]]*Error:' || true)"
+  rm -f "${log}"
+  if [ -n "${errors}" ]; then
+    echo "jekyll-docker.sh: build printed an error but exited 0:" >&2
+    echo "${errors}" >&2
+    return 1
+  fi
+}
+
 main() {
   local command="${1:-}"
   shift || true
@@ -129,7 +156,14 @@ main() {
       ;;
     build)
       require_docker
-      run_with_gems "bundle exec jekyll build --config $(config_list) --disable-disk-cache"
+      run_build ""
+      ;;
+    build-production)
+      # What .github/workflows/deploy.yml actually runs. Worth doing before a
+      # push: production is the only mode that runs jekyll-minifier, so a page
+      # that minifies badly looks perfectly healthy in every other command here.
+      require_docker
+      run_build "export JEKYLL_ENV=production && "
       ;;
     serve)
       require_docker
