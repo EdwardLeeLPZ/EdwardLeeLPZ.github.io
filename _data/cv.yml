@@ -3,6 +3,8 @@
   contents:
     - name: Full Name
       value: Peizheng Li
+    - name: Location
+      value: Seattle, WA · Open to Relocation
     - name: Email
       value: peizheng.li@yahoo.com
     - name: Homepage
@@ -13,17 +15,16 @@
 - title: Education
   type: time_table
   contents:
-    - title: Ph.D. in Computer Science
+    - title: Ph.D. Candidate in Computer Science
       institution: University of Tübingen, Germany
       year: 2023 - Present
       description:
         - "Advisors: Prof. Andreas Geiger and Prof. Andreas Zell"
-        - "Research: multimodal learning, VLM / VLA, world models, embodied AI, robotics, and autonomous driving"
     - title: M.Sc. in Electromobility
       institution: University of Stuttgart, Germany
       year: 2020 - 2022
       description:
-        - "Grade: 1.6 (German scale, 1.0 best; approx. 3.7 / 4.0 US equivalent)"
+        - "Grade: 1.6 (German scale, 1.0 best; approx. 3.7/4.0 US equivalent)"
         - "Thesis: End-to-End Agent Perception and Occupancy-Based Motion Prediction in Bird's-Eye View"
     - title: B.Eng. in Vehicle Engineering
       institution: Tongji University, Shanghai, China
@@ -40,25 +41,47 @@
       department: Scene Understanding Group, R&D
       year: 2023 - Present
       description:
-        - "Research on foundation models for autonomous systems, spanning VLM / VLA for autonomous driving, open-world 3D occupancy prediction, spatial and world-model-oriented reasoning, diffusion-based motion planning, self-supervised scene flow, and robotics / HRI collaborations."
-        - "First-author publications: SpaceDrive (CVPR 2026), AGO (ICCV 2025), PowerBEV (IJCAI 2023)."
-        - "Built large-scale data-engine and evaluation pipelines for data acquisition, cleaning, temporal consistency, scene / instance retrieval, and automated dense 3D pseudo-label generation."
-        - "Scaled training and evaluation across local GPU clusters and cloud using PyTorch, CUDA, DDP, Docker, Kubernetes, Flyte, Azure, and GCP."
-        - "Mentored interns and master thesis students; collaborated across research and engineering teams on open-source releases and reproducible evaluation."
+        - "Lead a research line on open-world 3D occupancy, label-free 3D pseudo-labeling, and spatial VLMs for driving; co-author SeFlow (scene flow), TQD-Track (3D tracking), and G2DP (planning); mentor 2 research interns and 1 master's student."
+        - 'Open-vocabulary 3D occupancy auto-labeling (<a href="/projects/occupancy-auto-labeling-pipeline/">project page</a>): built and ran a label-free pipeline on production-fleet recordings (5 surround cameras + LiDAR) that fuses multi-frame LiDAR and 2D open-vocabulary semantics into 3D semantic voxel labels, then distills them into a single-frame model delivered to the vehicle team; labeled 1,500 episodes (30,000 keyframes) with no human annotation within a $5K labeling budget (full 42,538-clip archive est. $199K); validated free space without ground truth by split-episode LiDAR replay (0.11% false-free rate vs. 2.18% for forward ray casting); traced ghost voxels to an int16 cache overflow (87% fewer after the fix); cut per-episode cost 36%.'
+        - 'AGO (ICCV 2025, 1st author, <a href="https://edwardleelpz.github.io/AGO_Page/">project page</a>): open-world 3D occupancy trained without 3D annotation: 2D open-vocabulary masks lifted to 3D pseudo-labels via LiDAR projection, multi-frame aggregation, and ray casting; a modality adapter aligns 3D embeddings to VLM image embeddings for zero-shot and few-shot novel-class prediction; state of the art at publication on self-supervised Occ3D-nuScenes (+4.09 mIoU).'
+        - 'SpaceDrive (CVPR 2026, co-first author, <a href="https://zhenghao2519.github.io/SpaceDrive_Page/">project page</a>): E2E spatial VLA that replaces textual digit tokens with a unified 3D positional encoding, without dense BEV features; state-of-the-art nuScenes open-loop planning among VLA-based methods (0.32 m avg. L2 with ego status, 1.80 m without) and 78.02 driving score on Bench2Drive closed loop.'
+        - "COURSE (1st author, in preparation): world-action model for E2E driving trained on a counterfactual causal tree, where an action-conditioned latent transition model rolls logged scenes forward under alternative ego maneuvers to supervise the planner (NAVSIM)."
+        - "Scale training and evaluation on on-premise SLURM clusters and cloud (Flyte, Kubernetes, Azure, GCP); e.g., cut distillation step time 3.29× by caching frozen vision-language teacher targets."
     - title: Master Student
       institution: Mercedes-Benz Group AG, Stuttgart, Germany
       department: Scene Understanding Group, R&D
       year: 2022
       description:
-        - "Built a camera-based end-to-end BEV perception and future prediction model with Lift-Splat-Shoot-style view transformation, temporal prediction, and multi-task decoding; achieved 39.3% dynamic IoU on nuScenes."
+        - 'PowerBEV (IJCAI 2023, co-first author, <a href="https://github.com/EdwardLeeLPZ/PowerBEV/">project page</a>): camera-only E2E BEV perception and future instance prediction with Lift-Splat-Shoot view transformation and centripetal backward flow, replacing two-stage post-processing with one-step association; 62.5% / 39.3% IoU (short / long range) on nuScenes.'
         - "Designed a multi-stage temporal GCN for the Waymo Occupancy and Flow Prediction Challenge; achieved 74.2% Flow-Grounded Occupancy AUC and ranked 4th on the leaderboard."
     - title: Research Intern
       institution: Mercedes-Benz Group AG, Stuttgart, Germany
       department: Scene Understanding Group, R&D
       year: 2021
       description:
-        - "Studied contextual bias in 2D object detection and domain adaptation; disruptive context reduced mAP by 5.37%."
-        - "Developed context-separation components and baseline pipelines to support internal adaptation research."
+        - "Studied contextual bias in 2D object detection and domain adaptation; showed disruptive context reduced mAP by 5.37%, and built context-separation components for internal adaptation research."
+
+- title: Patents
+  type: time_table
+  contents:
+    - title: A Powerful Yet Lightweight Framework for Instance Prediction in Bird's-Eye View
+      institution: Mercedes-Benz Group AG
+      year: 2023
+      description:
+        - "DE 102023001521 A1; published 2023, under examination."
+        - "Inventors: Shuxiao Ding, Peizheng Li, Niklas Hanselmann"
+    - title: An Open-World 3D Semantic Occupancy Prediction System Based on Grounded Training
+      institution: Mercedes-Benz Group AG
+      year: 2025
+      description:
+        - "DE 102025126853.3; filed 2025, within confidentiality period."
+        - "Inventors: Peizheng Li, Shuxiao Ding"
+    - title: A Spatially-Enhanced System Employing Explicit Positional Embedding for Vision-Language-Action-Based Autonomous Driving
+      institution: Mercedes-Benz Group AG
+      year: 2026
+      description:
+        - "DE 102026133405.9; filed 2026, examination requested."
+        - "Inventors: Zhenghao Zhang, Peizheng Li"
 
 - title: Technical Skills
   type: list_groups
@@ -88,23 +111,19 @@
     - category: Research Areas
       icon: fas fa-brain
       items:
-        - Foundation Models & VLM / VLA for Driving
-        - World Models
-        - Multimodal Learning
-        - 3D Vision
-        - Open-World Perception
-        - BEV / Occupancy
-        - Scene Flow
-        - Auto-Labeling & Data Engines
-        - Spatial Intelligence
-        - Embodied AI
-        - Multi-View Geometry
-        - SLAM
-        - HRI
+        - 3D World Understanding with VLMs
+        - Open-World 3D Occupancy
+        - 2D-to-3D Semantic Lifting
+        - Label-Free 3D Auto-Labeling at Fleet Scale
+        - Multi-Frame LiDAR Aggregation
+        - Ray Casting & Visibility Reasoning
+        - BEV / Scene Flow / 3D Tracking
+        - VLM / VLA for End-to-End Driving
+        - World-Action Models
 
 - title: Service
   type: list
   contents:
     - 'Organizer: <a href="https://drivex-workshop.github.io/cvpr2026/">4th DriveX Workshop</a>, in conjunction with CVPR 2026'
     - 'Organizer: <a href="https://drivex-workshop.github.io/eccv2026/">6th DriveX Workshop</a>, in conjunction with ECCV 2026'
-    - "Reviewer: CVPR 2025/2026, ICCV 2025, ECCV 2026, ICRA 2026, AAAI 2026/2027, IROS 2025/2026, IEEE T-ITS 2025"
+    - "Reviewer: CVPR 2025/2026, ICCV 2025, ECCV 2026, WACV 2027, ICRA 2026/2027, AAAI 2026/2027, IROS 2025/2026, IEEE T-ITS 2025"
