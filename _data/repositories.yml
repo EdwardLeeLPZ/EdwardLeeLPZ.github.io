@@ -1,10 +1,29 @@
-github_users:
-  - EdwardLeeLPZ
+# Code repositories listed at the bottom of /projects/, in display order.
+#
+# repo         owner/name on GitHub; the card links to https://github.com/<repo>
+# paper        the publication the code belongs to, shown as the card's label
+# description  one sentence, written here rather than taken from GitHub so it
+#              can match the publication descriptions in tone and length
+# language     primary language as GitHub reports it; omit when GitHub has none
+#
+# Star and fork counts are not stored here: assets/js/repository-stats.js reads
+# them from the GitHub API in the visitor's browser, so they never go stale.
 
-repo_description_lines_max: 2
+- repo: EdwardLeeLPZ/PowerBEV
+  paper: IJCAI 2023
+  description: Official code for PowerBEV, a lightweight framework built only from 2D convolutions that perceives and forecasts multiple objects in bird's-eye view.
+  language: Python
 
-github_repos:
-  - EdwardLeeLPZ/AGO
-  - EdwardLeeLPZ/PowerBEV
-  - EdwardLeeLPZ/Human-Activity-Recognition
-  - EdwardLeeLPZ/Diabetic-Retinopathy-Detection
+- repo: EdwardLeeLPZ/AGO
+  paper: ICCV 2025
+  description: Official code for AGO, adaptive grounding for open-world 3D occupancy prediction.
+
+- repo: KTH-RPL/OpenSceneFlow
+  paper: SeFlow · ECCV 2024
+  description: A shared codebase for point cloud scene flow estimation, with 13 methods including SeFlow across 6 public datasets.
+  language: Python
+
+- repo: zhenghao2519/SpaceDrive
+  paper: CVPR 2026
+  description: Official code for SpaceDrive, infusing spatial awareness into VLM-based autonomous driving.
+  language: Python

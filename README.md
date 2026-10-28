@@ -8,7 +8,7 @@ The site is a customized Jekyll homepage focused on Spatial Intelligence, Multim
 
 - **Home**: concise research positioning, selected updates, featured publications, project highlights, writing highlights, and open-position statement.
 - **Publications**: BibTeX-driven publication list with venue/year metadata, previews, paper links, posters, videos, and selected paper badges.
-- **Projects**: engineering write-ups from the `_projects` collection, each its own page with charts, figures, and interactive viewers.
+- **Projects**: engineering write-ups from the `_projects` collection, each its own page with charts, figures, and interactive viewers, followed by cards for the main code repositories with live star and fork counts.
 - **Blogs**: research notes and technical writing in English and Chinese.
 - **CV**: structured CV sections from `_data/cv.yml` plus an embedded high-DPI PDF.js viewer for `assets/pdf/Resume.pdf`.
 
@@ -27,7 +27,7 @@ Primary style entry points:
 - `_sass/_variables.scss` and `_sass/_themes.scss` define the shared palette tokens.
 - `_sass/_homepage.scss` controls the homepage composition.
 - `_sass/_pages.scss` controls shared subpage styling, publications, blog, CV, and navigation.
-- `_sass/_projects.scss` controls the project list, the project detail page, and the homepage project highlights.
+- `_sass/_projects.scss` controls the project list, the project detail page, the code repository cards, and the homepage project highlights.
 - `_layouts/about.liquid`, `_layouts/bib.liquid`, `_layouts/cv.liquid`, and `_layouts/project.liquid` provide the main custom page layouts.
 
 ## Content sources
@@ -37,6 +37,7 @@ Primary style entry points:
 - `_bibliography/papers.bib` stores publication metadata.
 - `_posts/` stores blog posts.
 - `_projects/` stores project write-ups; one file per project, ordered by `importance`.
+- `_data/repositories.yml` stores the code repositories listed on the Projects page, in display order.
 - `assets/img/publication_preview/` stores publication preview images.
 - `assets/img/project_images/` stores project thumbnails and figures.
 - `assets/pdf/` stores posters and the embedded resume PDF.

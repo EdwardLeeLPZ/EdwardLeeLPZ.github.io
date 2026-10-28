@@ -1,0 +1,57 @@
+{% comment %}
+  The code repositories section closing /projects/. Cards are plain markup in the
+  site's own palette, filled from _data/repositories.yml; only the star and fork
+  counts are live, written into the [data-repo-stat] slots by
+  assets/js/repository-stats.js. The slots stay hidden until a count arrives, so
+  a failed request leaves a complete card rather than an empty number.
+{% endcomment %}
+
+{% if site.data.repositories.size > 0 %}
+  <section class="repo-section" aria-labelledby="code-repositories">
+    <header class="repo-section__header">
+      <p class="repo-section__kicker">Open source</p>
+      <h2 id="code-repositories" class="repo-section__title">Code repositories</h2>
+    </header>
+
+    <div class="repo-grid">
+      {% for item in site.data.repositories %}
+        {% assign parts = item.repo | split: '/' %}
+        <a class="repo-card" href="https://github.com/{{ item.repo }}" data-repo="{{ item.repo }}">
+          <div class="repo-card__kicker">
+            {% if item.paper %}
+              <span class="repo-card__paper">{{ item.paper }}</span>
+            {% endif %}
+            <i class="fa-brands fa-github repo-card__mark" aria-hidden="true"></i>
+          </div>
+
+          <h3 class="repo-card__name">
+            <span class="repo-card__owner">{{ parts[0] }} /</span>
+            {{ parts[1] }}
+          </h3>
+
+          {% if item.description %}
+            <p class="repo-card__description">{{ item.description }}</p>
+          {% endif %}
+
+          <p class="repo-card__meta">
+            {% if item.language %}
+              <span class="repo-card__language">{{ item.language }}</span>
+            {% endif %}
+            <span class="repo-card__stat" data-repo-stat="stargazers_count" hidden>
+              <i class="fa-regular fa-star" aria-hidden="true"></i>
+              <span class="repo-card__count"></span>
+              <span class="sr-only">stars</span>
+            </span>
+            <span class="repo-card__stat" data-repo-stat="forks_count" hidden>
+              <i class="fa-solid fa-code-fork" aria-hidden="true"></i>
+              <span class="repo-card__count"></span>
+              <span class="sr-only">forks</span>
+            </span>
+          </p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <script defer src="{{ '/assets/js/repository-stats.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
+{% endif %}
