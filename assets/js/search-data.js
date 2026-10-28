@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "Projects",
-          description: "Engineering demos, system prototypes, and internal tooling.",
+          description: "Engineering demos, system prototypes, internal tooling, and open-source code.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -32,7 +32,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "CV",
-          description: "Education, work experience, technical skills, and academic service.",
+          description: "Education, work experience, patents, technical skills, and academic service.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
